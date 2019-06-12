@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/swipe_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.MainActivity"
+    android:background="@color/colorWhite"
+    app:mode="same_level"
+    app:dragEdge="right">
+
+    <RelativeLayout
+        android:id="@+id/btn_remove_project"
+        android:layout_width="100dp"
+        android:layout_height="136dp"
+        android:background="@color/colorRed"
+        android:clickable="true"
+        android:focusable="true">
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_remove_project"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="18sp"
+            android:textColor="@color/colorWhite"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/delete"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/main_item"
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:clickable="true"
+        android:focusable="true">
+        <com.foxridge.towerfox.views.CustomSeekBar
+            android:id="@+id/progress_view"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="64dp"
+            android:thumb="@null"
+            android:background="@drawable/progress_background"
+            android:progressTint="@color/transparent"
+            android:progressBackgroundTint="@color/transparent"
+            tools:targetApi="lollipop" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/progress_view"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginTop="16dp">
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:textSize="16sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:text="progress"/>
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_project_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:textSize="16sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:text="progress"/>
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_project_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:font_style="regular"
+                android:textSize="16sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:text="progress"/>
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_casper_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:font_style="regular"
+                android:textSize="16sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:text="progress"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_keyboard_arrow_right_24px"
+            android:background="@drawable/circle_gray"
+            android:scaleType="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDividerGray"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+</com.chauthai.swipereveallayout.SwipeRevealLayout>

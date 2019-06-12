@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#425250</color>
+    <color name="colorPrimaryDark">#465A50</color>
+    <color name="colorAccent">#177FC3</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorExtraLight">#EBEBF1</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlack50">#88000000</color>
+    <color name="colorTabGray">#BEBEBE</color>
+    <color name="colorBackGray">#D8D8D8</color>
+    <color name="colorBlack87">#CC000000</color>
+    <color name="colorDividerGray">#55000000</color>
+    <color name="color_text_gray">#AAAAAA</color>
+    <color name="color_text_dark_gray">#555555</color>
+    <color name="colorLightGray">#DDDDDD</color>
+    <color name="colorGreen">#2BC81C</color>
+    <color name="colorButtonGreen">#33D932</color>
+    <color name="colorDarkGreen">#3D973E</color>
+    <color name="colorOrange">#ED642A</color>
+    <color name="colorRed">#D0021B</color>
+    <color name="colorGray">#667A7A7A</color>
+    <color name="colorTextGray">#666666</color>
+    <color name="transparent">#00000000</color>
+    <color name="colorBlue1">#00529B</color>
+    <color name="colorBlue2">#0D9FF9</color>
+
+    <color name="circel_stroke">#88D0021B</color>
+    <color name="circel_fill">#8833D932</color>
+
+    <color name="fontWhiteEnable">#FFF</color>
+    <color name="fontWhiteDisable">#85FFFFFF</color>
+    <color name="fontBlackEnable">#000000</color>
+    <color name="fontBlackDisable">#50000000</color>
+</resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ServerAddressActivity"
+    android:background="@color/colorLightGray"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/rootView"
+    android:onClick="BackgroundClick">
+
+    <com.foxridge.towerfox.views.CustomFontTextView
+        android:id="@+id/tv_top_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string_login_top_description"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:font_style="regular"
+        android:layout_below="@+id/top_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/tv_top_description">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorWhite"
+            >
+
+            <com.foxridge.towerfox.views.CustomEditText
+                android:id="@+id/edt_username"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text=""
+                android:textSize="18sp"
+                app:font_style="regular"
+                android:maxLines="1"
+                android:lines="1"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:hint="@string/username"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:background="@color/colorWhite"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorWhite"
+            android:layout_marginTop="8dp"
+            >
+
+            <com.foxridge.towerfox.views.CustomEditText
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text=""
+                android:textSize="18sp"
+                app:font_style="regular"
+                android:maxLines="1"
+                android:lines="1"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:hint="@string/password"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:background="@color/colorWhite"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/top_bar"/>
+</RelativeLayout>

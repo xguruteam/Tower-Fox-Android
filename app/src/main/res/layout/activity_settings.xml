@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".ui.MainActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_bar"
+        android:layout_margin="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/btn_about_closeout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@color/colorLightGray">
+
+                <ImageView
+                    android:id="@+id/iv_about_closeout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_keyboard_arrow_right_gray_24px"/>
+
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_about_closeout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="medium"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="@string/about_closeout"
+                    android:textColor="@color/colorBlack87"
+                    android:layout_marginStart="16dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/view_about_closeout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_about_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="medium"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Tower Fox for Android\nVersion 1.0\n\nDevice Model: Android\nDevice Version: 8.1"
+                    android:textColor="@color/colorBlack87"
+                    android:layout_margin="24dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_log"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@color/colorLightGray"
+                android:layout_marginTop="1dp">
+
+                <ImageView
+                    android:id="@+id/iv_log"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_keyboard_arrow_right_gray_24px"/>
+
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_log"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="medium"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="@string/support"
+                    android:textColor="@color/colorBlack87"
+                    android:layout_marginStart="16dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/view_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_email_log"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    app:font_style="medium"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/request_support"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/colorPrimary"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:focusable="true"
+                    />
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_call_support"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    app:font_style="medium"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/can_t_access_your_account"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorPrimary"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:focusable="true"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_sync_server_address"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@color/colorLightGray"
+                android:layout_marginTop="1dp">
+
+                <ImageView
+                    android:id="@+id/iv_sync_server_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_keyboard_arrow_right_gray_24px"/>
+
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_sync_server_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="medium"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="Sync Server Address"
+                    android:textColor="@color/colorBlack87"
+                    android:layout_marginStart="16dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/view_sync_server_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="medium"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Enter the address of the Tower Fox Approval server you wish to synchronize with:"
+                    android:textColor="@color/colorBlack87"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="24dp"/>
+
+                <com.foxridge.towerfox.views.CustomEditText
+                    android:id="@+id/edt_server_ip"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:background="@drawable/edt_background"
+                    app:font_style="medium"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:hint="@string/example_server_com"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="8dp"
+                    />
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_change_server"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    app:font_style="medium"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/change_sync_server"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorPrimary"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:focusable="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_account"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@color/colorLightGray"
+                android:layout_marginTop="1dp">
+
+                <ImageView
+                    android:id="@+id/iv_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_keyboard_arrow_right_gray_24px"/>
+
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="medium"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="@string/string_account"
+                    android:textColor="@color/colorBlack87"
+                    android:layout_marginStart="16dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/view_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_account_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="medium"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="admin"
+                    android:textColor="@color/colorBlack87"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="24dp"/>
+                <com.foxridge.towerfox.views.CustomFontTextView
+                    android:id="@+id/tv_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    app:font_style="medium"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/logout"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorPrimary"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:focusable="true"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/top_bar"/>
+</RelativeLayout>

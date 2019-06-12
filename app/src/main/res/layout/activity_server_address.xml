@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ServerAddressActivity"
+    android:background="@color/colorLightGray"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/rootView"
+    android:onClick="BackgroundClick">
+
+    <com.foxridge.towerfox.views.CustomFontTextView
+        android:id="@+id/tv_top_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string_server_address_top_description"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:font_style="regular"
+        android:layout_below="@+id/top_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="24dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:layout_below="@+id/tv_top_description"
+        >
+
+        <com.foxridge.towerfox.views.CustomEditText
+            android:id="@+id/edt_server_address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text=""
+            android:textSize="18sp"
+            app:font_style="regular"
+            android:maxLines="1"
+            android:lines="1"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:hint="@string/example_server_com"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@color/colorWhite"
+            />
+
+    </RelativeLayout>
+
+    <com.foxridge.towerfox.views.CustomFontTextView
+        android:id="@+id/tv_bottom_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string_server_address_bottom_description"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:font_style="regular"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="24dp"/>
+
+
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/top_bar"/>
+</RelativeLayout>

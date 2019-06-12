@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AddProjectActivity"
+    android:background="@color/colorLightGray"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/backgroundview">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:layout_below="@id/top_bar"
+        android:layout_marginTop="16dp"
+        >
+
+        <com.foxridge.towerfox.views.CustomEditText
+            android:id="@+id/edt_project_id"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text=""
+            android:textSize="18sp"
+            app:font_style="regular"
+            android:maxLines="1"
+            android:inputType="text"
+            android:ems="1"
+            android:imeOptions="actionDone"
+            android:hint="@string/string_project_id"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@color/colorWhite"
+            />
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/top_bar"/>
+</RelativeLayout>

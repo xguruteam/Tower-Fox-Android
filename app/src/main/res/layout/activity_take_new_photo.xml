@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AddProjectActivity"
+    android:background="@color/colorLightGray"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/backgroundview">
+
+    <com.foxridge.towerfox.views.CustomFontTextView
+        android:id="@+id/tv_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:font_style="medium"
+        android:textSize="16sp"
+        android:text="cell"
+        android:layout_below="@+id/top_bar"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDividerGray"
+        android:layout_below="@+id/tv_category_name"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_photo_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:layout_below="@id/tv_category_name"
+        android:layout_marginTop="8dp">
+        <com.foxridge.towerfox.views.CustomEditText
+            android:id="@+id/edt_photo_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text=""
+            android:textSize="16sp"
+            app:font_style="regular"
+            android:maxLines="1"
+            android:inputType="text"
+            android:ems="1"
+            android:imeOptions="actionNext"
+            android:hint="@string/photo_name_required"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@color/colorWhite"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_below="@id/rl_photo_name"
+        android:layout_marginTop="16dp"
+        >
+        <com.foxridge.towerfox.views.CustomEditText
+            android:id="@+id/edt_photo_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            app:font_style="regular"
+            android:maxLines="10"
+            android:maxLength="200"
+            android:hint="@string/photo_description_required"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@color/colorWhite"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btn_take_photo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/iv_projects_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="center"
+                android:src="@drawable/ic_camera_white"
+                android:layout_gravity="center" />
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_projects_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/take_photo"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/colorWhite"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/top_bar"/>
+</RelativeLayout>

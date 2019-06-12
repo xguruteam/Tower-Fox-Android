@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorExtraLight"
+    tools:context=".ui.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/detail_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_bar"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/btn_rejection_detail"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/colorWhite">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cancel_filled"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"/>
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:font_style="regular"
+                android:text="@string/photo_rejection_details"
+                android:textColor="@color/colorRed"
+                android:scrollbarSize="16sp"/>
+
+            <ImageView
+                android:id="@+id/iv_right_arrow"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_keyboard_arrow_right_24px"
+                android:background="@drawable/circle_gray"
+                android:scaleType="center"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="8dp"/>
+        </RelativeLayout>
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_category_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/take_photo"
+            android:textColor="@color/color_text_dark_gray"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDividerGray"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/take_photo"
+            android:textColor="@color/color_text_dark_gray"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDividerGray"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_example_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/take_photo"
+            android:textColor="@color/color_text_dark_gray"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="10dp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_take_photo"
+        android:layout_below="@+id/detail_view"
+        android:scaleType="fitCenter"
+        android:layout_margin="16dp"/>
+
+    <RelativeLayout
+        android:id="@+id/btn_take_photo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/colorPrimary"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/iv_projects_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="center"
+                android:src="@drawable/ic_camera_white"
+                android:layout_gravity="center" />
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_projects_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/take_photo"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/colorWhite"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/top_bar"/>
+</RelativeLayout>

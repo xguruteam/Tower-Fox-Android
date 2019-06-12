@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGray"
+    tools:context=".ui.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/progress_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/top_bar"
+        android:background="@color/colorWhite"
+        android:visibility="gone">
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_progress_detail"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/projects_list"
+            android:textColor="@color/color_text_dark_gray"/>
+
+        <com.capton.colorfulprogressbar.ColorfulProgressbar
+            android:id="@+id/indeterminate_progress"
+            app:style="@string/style_colorful"
+            app:max="100"
+            app:progress="50"
+            app:progressColor1="@color/bootstrap_brand_secondary_text"
+            app:progressColor2="@color/colorPrimary"
+            app:backgroundColor="@color/colorExtraLight"
+            app:animation="true"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_projects"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/progress_view"
+        android:layout_above="@id/bottom_view"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:id="@+id/view_empty_projects"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/top_bar"
+        android:layout_above="@id/bottom_view"
+        android:background="@color/colorLightGray"
+        android:visibility="gone">
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="@string/no_projects_downloaded"
+            android:textSize="16sp"
+            app:font_style="medium" />
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to_download_a_project_to_your_device_click_the_icon_in_the_menu_bar"
+            app:font_style="regular"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_rejectes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/progress_view"
+        android:layout_above="@id/bottom_view"
+        android:visibility="gone"/>
+    <LinearLayout
+        android:id="@+id/view_empty_rejects"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/top_bar"
+        android:layout_above="@id/bottom_view"
+        android:background="@color/colorLightGray"
+        android:visibility="gone">
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_photos"
+            app:font_style="medium"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:layout_marginTop="50dp"/>
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/there_are_no_photos_in_the_rejected_list"
+            app:font_style="regular"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/top_bar"/>
+</RelativeLayout>

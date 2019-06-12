@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "955846135818",
+    "firebase_url": "https://tower-fox.firebaseio.com",
+    "project_id": "tower-fox",
+    "storage_bucket": "tower-fox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955846135818:android:7a929333afdb6918",
+        "android_client_info": {
+          "package_name": "com.foxridge.towerfox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955846135818-5oom5kibccsq55vaq8mdkgguqrva5dop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7loixly-yIcNKm1VyCFcWmmWc2iE7HkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955846135818-5oom5kibccsq55vaq8mdkgguqrva5dop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

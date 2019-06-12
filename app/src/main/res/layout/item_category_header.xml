@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:id="@+id/swipe_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite">
+
+    <com.foxridge.towerfox.views.CustomSeekBar
+        android:id="@+id/progress_view"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="96dp"
+        android:thumb="@null"
+        android:background="@color/colorTabGray"
+        android:progressTint="@color/transparent"
+        android:progressBackgroundTint="@color/transparent"
+        tools:targetApi="lollipop" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/progress_view"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginTop="8dp">
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_remaining_photos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="bold"
+            android:textSize="16sp"
+            android:textColor="@color/color_text_dark_gray"
+            android:text="PHOTOS REMAINING: 4"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_taken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="medium"
+                android:textSize="12sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:text="4"/>
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="medium"
+                android:textSize="12sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:text=" TO BE TAKEN / "/>
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_rejected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="medium"
+                android:textSize="12sp"
+                android:textColor="@color/colorRed"
+                android:text="1"/>
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="medium"
+                android:textSize="12sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:text=" REJECTED / "/>
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_out_of_scope"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="medium"
+                android:textSize="12sp"
+                android:textColor="@color/colorOrange"
+                android:text="0"/>
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="medium"
+                android:textSize="12sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:text=" OUT OF SCOPE "/>
+        </LinearLayout>
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_project_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="bold"
+            android:textSize="16sp"
+            android:textColor="@color/color_text_dark_gray"
+            android:text="progress"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_project_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="regular"
+            android:textSize="16sp"
+            android:textColor="@color/color_text_dark_gray"
+            android:text="progress"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_casper_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="regular"
+            android:textSize="16sp"
+            android:textColor="@color/color_text_dark_gray"
+            android:text="progress"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/tv_add_photo"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/add_camera_background"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="16dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_camera_filled"
+            android:scaleType="center"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"/>
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:text="Add\nPhoto"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorDividerGray"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

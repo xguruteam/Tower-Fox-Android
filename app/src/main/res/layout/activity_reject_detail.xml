@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorExtraLight"
+    tools:context=".ui.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/detail_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_bar"
+        android:orientation="vertical">
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/take_photo"
+            android:textColor="@color/color_text_dark_gray"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDividerGray"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/reviewer_comments"
+            android:textColor="@color/color_text_dark_gray"
+            android:layout_marginTop="8dp"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/take_photo"
+            android:textColor="@color/color_text_dark_gray"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDividerGray"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/reviewer"
+            android:textColor="@color/color_text_dark_gray"
+            android:layout_marginTop="8dp"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_reviewer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/take_photo"
+            android:textColor="@color/color_text_dark_gray"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDividerGray"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/reviewed_on"
+            android:textColor="@color/color_text_dark_gray"
+            android:layout_marginTop="8dp"/>
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_review_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="medium"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/take_photo"
+            android:textColor="@color/color_text_dark_gray"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDividerGray"/>
+    </LinearLayout>
+
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/top_bar"/>
+</RelativeLayout>

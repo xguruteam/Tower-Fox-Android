@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorLightGray"
+    tools:context=".ui.MainActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nested_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_bar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".ui.MainActivity"
+                android:background="@color/colorWhite">
+
+                <com.foxridge.towerfox.views.CustomSeekBar
+                    android:id="@+id/progress_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="96dp"
+                    android:thumb="@null"
+                    android:background="@drawable/progress_background"
+                    android:progressTint="@color/transparent"
+                    android:progressBackgroundTint="@color/transparent"
+                    tools:targetApi="lollipop" />
+                <LinearLayout
+                    android:id="@+id/ll_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/progress_view"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="96dp"
+                    android:layout_marginTop="8dp">
+
+                    <com.foxridge.towerfox.views.CustomFontTextView
+                        android:id="@+id/tv_remaining_photos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_text_dark_gray"
+                        android:text="PHOTOS REMAINING: 4"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp">
+                        <com.foxridge.towerfox.views.CustomFontTextView
+                            android:id="@+id/tv_taken"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="medium"
+                            android:textSize="12sp"
+                            android:textColor="@color/color_text_dark_gray"
+                            android:text="4"/>
+                        <com.foxridge.towerfox.views.CustomFontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="medium"
+                            android:textSize="10sp"
+                            android:textColor="@color/color_text_dark_gray"
+                            android:text=" TO BE TAKEN / "/>
+                        <com.foxridge.towerfox.views.CustomFontTextView
+                            android:id="@+id/tv_rejected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="medium"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorRed"
+                            android:text="1"/>
+                        <com.foxridge.towerfox.views.CustomFontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="medium"
+                            android:textSize="10sp"
+                            android:textColor="@color/color_text_dark_gray"
+                            android:text=" REJECTED / "/>
+                        <com.foxridge.towerfox.views.CustomFontTextView
+                            android:id="@+id/tv_out_of_scope"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="medium"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorOrange"
+                            android:text="0"/>
+                        <com.foxridge.towerfox.views.CustomFontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="medium"
+                            android:textSize="10sp"
+                            android:textColor="@color/color_text_dark_gray"
+                            android:text=" OUT OF SCOPE "/>
+                    </LinearLayout>
+                    <com.foxridge.towerfox.views.CustomFontTextView
+                        android:id="@+id/tv_project_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_text_dark_gray"
+                        android:text="progress"/>
+
+                    <com.foxridge.towerfox.views.CustomFontTextView
+                        android:id="@+id/tv_project_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:font_style="regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_text_dark_gray"
+                        android:text="progress"/>
+
+                    <com.foxridge.towerfox.views.CustomFontTextView
+                        android:id="@+id/tv_casper_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:font_style="regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_text_dark_gray"
+                        android:text="progress"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btn_add_photo"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/add_camera_background"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="8dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_camera_filled"
+                        android:scaleType="center"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="8dp"/>
+                    <com.foxridge.towerfox.views.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:font_style="medium"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Add\nPhoto"/>
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDividerGray"
+                    android:layout_below="@+id/ll_tv"
+                    android:layout_marginTop="8dp"/>
+            </RelativeLayout>
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_category_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:font_style="medium"
+                android:textSize="14sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text=""
+                android:background="@color/colorExtraLight"
+                android:visibility="gone"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_categories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/colorDividerGray"-->
+        <!--android:layout_above="@id/bottom_view"/>-->
+    <!--<LinearLayout-->
+        <!--android:id="@+id/bottom_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_alignParentBottom="true">-->
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/btn_projects"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:clickable="true"-->
+            <!--android:focusable="true"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:foreground="?attr/selectableItemBackground">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_centerInParent="true">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_projects_list"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:scaleType="center"-->
+                    <!--android:src="@drawable/ic_list_white_24px"-->
+                    <!--android:layout_gravity="center" />-->
+                <!--<com.android.closeout.views.CustomFontTextView-->
+                    <!--android:id="@+id/tv_projects_list"-->
+                    <!--android:layout_marginTop="4dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--app:font_style="medium"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@string/projects_list"-->
+                    <!--android:textColor="@color/colorWhite"/>-->
+
+            <!--</LinearLayout>-->
+        <!--</RelativeLayout>-->
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/btn_rejects"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:clickable="true"-->
+            <!--android:focusable="true"-->
+            <!--android:background="@color/colorWhite"-->
+            <!--android:foreground="?attr/selectableItemBackground">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_centerInParent="true">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_rejected_list"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:scaleType="center"-->
+                    <!--android:src="@drawable/ic_list_blue_24px"-->
+                    <!--android:layout_gravity="center" />-->
+                <!--<com.android.closeout.views.CustomFontTextView-->
+                    <!--android:id="@+id/tv_rejected_list"-->
+                    <!--android:layout_marginTop="4dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--app:font_style="medium"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@string/rejected_list"-->
+                    <!--android:textColor="@color/colorPrimary"/>-->
+
+            <!--</LinearLayout>-->
+        <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
+
+
+    <include layout="@layout/action_bar_layout"
+        android:id="@+id/top_bar"/>
+</RelativeLayout>

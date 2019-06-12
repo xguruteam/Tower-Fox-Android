@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.MainActivity"
+    android:background="@color/colorWhite"
+    android:clickable="true"
+    android:focusable="true">
+
+    <com.foxridge.towerfox.views.CustomSeekBar
+        android:id="@+id/progress_view"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
+        android:thumb="@null"
+        android:background="@drawable/progress_background"
+        android:progressTint="@color/transparent"
+        android:progressBackgroundTint="@color/transparent"
+        tools:targetApi="lollipop" />
+
+    <LinearLayout
+        android:id="@+id/ll_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/progress_view"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginTop="16dp">
+
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_category_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:font_style="bold"
+            android:textSize="16sp"
+            android:textColor="@color/color_text_dark_gray"
+            android:text="progress"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_remaining"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:font_style="regular"
+                android:textSize="14sp"
+                android:textColor="@color/color_text_dark_gray"
+                android:text="progress"/>
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_rejected"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:font_style="regular"
+                android:textSize="14sp"
+                android:textColor="@color/colorRed"
+                android:text="progress"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_pending"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:font_style="regular"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlue1"
+                android:text="progress"/>
+
+            <com.foxridge.towerfox.views.CustomFontTextView
+                android:id="@+id/tv_approved"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:font_style="regular"
+                android:textSize="14sp"
+                android:textColor="@color/colorGreen"
+                android:text="progress"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_keyboard_arrow_right_24px"
+        android:background="@drawable/circle_gray"
+        android:scaleType="center"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDividerGray"
+        android:layout_below="@+id/ll_tv"
+        android:layout_marginTop="8dp"/>
+</RelativeLayout>

@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -981,6 +983,22 @@ public class SyncViewModel extends ViewModel {
         }
     }
 
+    private String tempGalleryPath(String imageNameStr) {
+        String[] pathComponents = imageNameStr.split("_");
+        String projectID = pathComponents[0];
+        String path = "";
+        if (projectID.length() > 0) {
+            path = "/" + projectID;
+        }
+
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        ApplicationInfo applicationInfo = App.getApp().getBaseContext().getApplicationInfo();
+        int stringId = applicationInfo.labelRes;
+        String appName = stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : App.getApp().getBaseContext().getString(stringId);
+        String filePath = storageDir.getAbsolutePath() + "/" + appName + path;
+        return filePath;
+    }
+
     public MutableLiveData<Boolean> getJsonDeleteProject() {
         return jsonDeleteProject;
     }
@@ -1202,6 +1220,19 @@ public class SyncViewModel extends ViewModel {
                     FileOutputStream fos = new FileOutputStream(file);
                     fos.write(response);
                     fos.close();
+
+                    // copy to gallery
+                    dirstr = tempGalleryPath(imagepath);
+                    dir = new File(dirstr);
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
+                    file = new File(dir, imagepath);
+                    file.createNewFile();
+                    fos = new FileOutputStream(file);
+                    fos.write(response);
+                    fos.close();
+
                     return imageURL;
                 }
             } catch (IOException e) {

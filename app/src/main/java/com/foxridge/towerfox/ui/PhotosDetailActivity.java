@@ -444,19 +444,20 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
     }
 
     private String tempGalleryPath() {
-        String path = Globals.getInstance().storage_loadString("GalleryPath");
-        if (Globals.getInstance().storage_loadBool("isAdhoc")) {
-            int index = path.indexOf("/", 1);
-            if (index > 1) {
-                path = path.substring(0, index);
-            }
-            path += "/" + imageNameStr;
-        }
+        String path = "/" + Globals.getInstance().storage_loadString("ProjectID") + "/" + imageNameStr;
+//        String path = Globals.getInstance().storage_loadString("GalleryPath");
+//        if (Globals.getInstance().storage_loadBool("isAdhoc")) {
+//            int index = path.indexOf("/", 1);
+//            if (index > 1) {
+//                path = path.substring(0, index);
+//            }
+//            path += "/" + imageNameStr;
+//        }
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         ApplicationInfo applicationInfo = this.getApplicationInfo();
         int stringId = applicationInfo.labelRes;
         String appName = stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : this.getString(stringId);
-        String filePath = storageDir.getAbsolutePath() + "/" + appName + path + ".jpg";
+        String filePath = storageDir.getAbsolutePath() + "/" + appName + path;
         return filePath;
     }
 

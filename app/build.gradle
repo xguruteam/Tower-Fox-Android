@@ -7,9 +7,9 @@ android {
         applicationId "com.foxridge.towerfox"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 8
+        versionCode 9
         versionName "1.0.4"
-        setProperty("archivesBaseName", "Tower Fox-$versionName")
+        setProperty("archivesBaseName", "Tower Fox-$versionName($versionCode)")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

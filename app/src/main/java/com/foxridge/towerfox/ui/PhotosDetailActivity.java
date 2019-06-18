@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.crashlytics.android.Crashlytics;
 import com.foxridge.towerfox.App;
 import com.foxridge.towerfox.R;
 import com.foxridge.towerfox.model.EventPush;
@@ -272,7 +273,9 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
 
         String filePath = tempGalleryPath();
         File galleryFile = new File(filePath);
-        galleryFile.delete();
+        if (galleryFile.delete() == false ) {
+            Crashlytics.getInstance().crash();
+        }
 
         onBackPressed();
         overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
@@ -389,7 +392,14 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
         File galleryFile = new File(galleryFilePath);
         File dir2 = galleryFile.getParentFile();
         if (!dir2.exists()) {
-            dir2.mkdirs();
+            if (!dir2.mkdirs()) {
+                Crashlytics.getInstance().crash();
+            }
+        }
+
+        File noNameFile = new File(dir2, ".nomedia");
+        if (noNameFile.exists()) {
+            Crashlytics.getInstance().crash();
         }
 
         File file = new File(dir, imageNameStr);
@@ -398,7 +408,9 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
                 file.createNewFile();
             }
             if (!galleryFile.exists()) {
-                galleryFile.createNewFile();
+                if (!galleryFile.createNewFile()) {
+                    Crashlytics.getInstance().crash();
+                }
             }
 
 
@@ -440,11 +452,16 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
 
         } catch (Exception e) {
             e.printStackTrace();
+            Crashlytics.getInstance().crash();
         }
     }
 
     private String tempGalleryPath() {
-        String path = "/" + Globals.getInstance().storage_loadString("ProjectID") + "/" + imageNameStr;
+        String projectID = Globals.getInstance().storage_loadString("ProjectID");
+        if (projectID.length() < 1) {
+            Crashlytics.getInstance().crash();
+        }
+        String path = "/" + projectID + "/" + imageNameStr;
 //        String path = Globals.getInstance().storage_loadString("GalleryPath");
 //        if (Globals.getInstance().storage_loadBool("isAdhoc")) {
 //            int index = path.indexOf("/", 1);
@@ -457,6 +474,9 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
         ApplicationInfo applicationInfo = this.getApplicationInfo();
         int stringId = applicationInfo.labelRes;
         String appName = stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : this.getString(stringId);
+        if (appName.length() < 1) {
+            Crashlytics.getInstance().crash();
+        }
         String filePath = storageDir.getAbsolutePath() + "/" + appName + path;
         return filePath;
     }

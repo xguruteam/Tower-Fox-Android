@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.foxridge.towerfox.App;
 import com.foxridge.towerfox.model.Categories;
 import com.foxridge.towerfox.model.CategoryDisplayModel;
@@ -990,11 +991,17 @@ public class SyncViewModel extends ViewModel {
         if (projectID.length() > 0) {
             path = "/" + projectID;
         }
+        else {
+            Crashlytics.getInstance().crash();
+        }
 
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         ApplicationInfo applicationInfo = App.getApp().getBaseContext().getApplicationInfo();
         int stringId = applicationInfo.labelRes;
         String appName = stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : App.getApp().getBaseContext().getString(stringId);
+        if (appName.length() < 1) {
+            Crashlytics.getInstance().crash();
+        }
         String filePath = storageDir.getAbsolutePath() + "/" + appName + path;
         return filePath;
     }
@@ -1225,8 +1232,15 @@ public class SyncViewModel extends ViewModel {
                     dirstr = tempGalleryPath(imagepath);
                     dir = new File(dirstr);
                     if (!dir.exists()) {
-                        dir.mkdirs();
+                        if (!dir.mkdirs()) {
+                            Crashlytics.getInstance().crash();
+                        }
                     }
+                    File noNameFile = new File(dir, ".nomedia");
+                    if (noNameFile.exists()) {
+                        Crashlytics.getInstance().crash();
+                    }
+
                     file = new File(dir, imagepath);
                     file.createNewFile();
                     fos = new FileOutputStream(file);
@@ -1237,6 +1251,7 @@ public class SyncViewModel extends ViewModel {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                Crashlytics.getInstance().crash();
                 return e.getLocalizedMessage();
             }
         }

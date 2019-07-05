@@ -1251,8 +1251,7 @@ public class SyncViewModel extends ViewModel {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                Crashlytics.getInstance().crash();
-                return e.getLocalizedMessage();
+                return imageURL;
             }
         }
 

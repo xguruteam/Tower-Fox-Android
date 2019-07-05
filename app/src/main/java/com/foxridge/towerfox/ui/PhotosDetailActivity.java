@@ -271,11 +271,13 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
             Log.e("deleteFile", e.getLocalizedMessage());
         }
 
+        /*
         String filePath = tempGalleryPath();
         File galleryFile = new File(filePath);
         if (galleryFile.delete() == false ) {
             Crashlytics.getInstance().crash();
         }
+        */
 
         onBackPressed();
         overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
@@ -387,6 +389,7 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
             dir.mkdir();
         }
 
+        /*
         String galleryFilePath = tempGalleryPath();
         Log.e("gallery path", "save image " + galleryFilePath);
         File galleryFile = new File(galleryFilePath);
@@ -401,21 +404,23 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
         if (noNameFile.exists()) {
             Crashlytics.getInstance().crash();
         }
+        */
 
         File file = new File(dir, imageNameStr);
         try {
             if (!file.exists()) {
                 file.createNewFile();
             }
+            /*
             if (!galleryFile.exists()) {
                 if (!galleryFile.createNewFile()) {
                     Crashlytics.getInstance().crash();
                 }
             }
-
+            */
 
             FileOutputStream out = new FileOutputStream(file);
-            FileOutputStream out_gallery = new FileOutputStream(galleryFile);
+//            FileOutputStream out_gallery = new FileOutputStream(galleryFile);
             Bitmap mutableBitmap = originalBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
             // NEWLY ADDED CODE STARTS HERE [
@@ -445,14 +450,14 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
             out.close();
             ivPhoto.setImageBitmap(mutableBitmap);
 
-            mutableBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out_gallery);
-            out_gallery.flush();
-            out_gallery.close();
+//            mutableBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out_gallery);
+//            out_gallery.flush();
+//            out_gallery.close();
 
 
         } catch (Exception e) {
             e.printStackTrace();
-            Crashlytics.getInstance().crash();
+//            Crashlytics.getInstance().crash();
         }
     }
 

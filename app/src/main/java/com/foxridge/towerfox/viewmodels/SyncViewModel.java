@@ -1233,12 +1233,12 @@ public class SyncViewModel extends ViewModel {
                     dir = new File(dirstr);
                     if (!dir.exists()) {
                         if (!dir.mkdirs()) {
-                            Crashlytics.getInstance().crash();
+                            return imageURL;
                         }
                     }
                     File noNameFile = new File(dir, ".nomedia");
                     if (noNameFile.exists()) {
-                        Crashlytics.getInstance().crash();
+                        return imageURL
                     }
 
                     file = new File(dir, imagepath);

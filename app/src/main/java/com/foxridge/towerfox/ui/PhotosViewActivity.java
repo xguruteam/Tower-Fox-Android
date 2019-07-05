@@ -82,6 +82,8 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
     private static final int REQUEST_CAMERA = 103;
     private final static int REQUEST_TAKE_PHOTO = 105;
 
+    String currentImagePath = null;
+
     @Override
     public int addView() {
         return  R.layout.activity_photo;
@@ -94,6 +96,16 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
         syncViewModel = ViewModelProviders.of(this).get(SyncViewModel.class);
         initView();
         setObservers();
+
+        ivPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentImagePath != null) {
+                    String title = Globals.getInstance().storage_loadString("ItemName");
+                    PhotoZoomViewActivity.startActivity(PhotosViewActivity.this, currentImagePath, title);
+                }
+            }
+        });
     }
 
     @Override
@@ -171,12 +183,14 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
             tvExamplePhoto.setText(R.string.captured_image);
             if (photodetail.getCapturedImageName().equals("Sample.jpg")) {
                 ivPhoto.setImageResource(R.drawable.ic_camera_gray);
+                currentImagePath = null;
             }else{
                 String imagePath = Globals.getInstance().IMAGE_LOCATION_PATH+"/CapturedPhotos/"+photodetail.getCapturedImageName();
                 File imgFile = new  File(imagePath);
                 if(imgFile.exists()){
                     Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                     ivPhoto.setImageBitmap(myBitmap);
+                    currentImagePath = imgFile.toURI().toString();
                 }
             }
         }else{
@@ -186,6 +200,7 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
             if(imgFile.exists()){
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 ivPhoto.setImageBitmap(myBitmap);
+                currentImagePath = imgFile.toURI().toString();
             }
         }
         if (photodetail.getStatus() == 4) {

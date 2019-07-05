@@ -88,6 +88,8 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
     private static final int REQUEST_CAMERA = 103;
     private boolean isReturn = false;
 
+    String currentImagePath = null;
+
     @Override
     public int addView() {
         return  R.layout.activity_photo_detail;
@@ -100,6 +102,16 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
         syncViewModel = ViewModelProviders.of(this).get(SyncViewModel.class);
         initView();
         setObservers();
+
+        ivPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentImagePath != null) {
+                    String title = Globals.getInstance().storage_loadString("ItemName");
+                    PhotoZoomViewActivity.startActivity(PhotosDetailActivity.this, currentImagePath, title);
+                }
+            }
+        });
     }
 
     public void initView() {
@@ -449,6 +461,7 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
             out.flush();
             out.close();
             ivPhoto.setImageBitmap(mutableBitmap);
+            currentImagePath = file.toURI().toString();
 
 //            mutableBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out_gallery);
 //            out_gallery.flush();

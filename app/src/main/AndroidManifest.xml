@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.foxridge.towerfox">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"  />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:name="com.foxridge.towerfox.App"
-        android:hardwareAccelerated="false"
         android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.foxridge.towerfox.ui.SplashActivity"
+        <activity
+            android:name=".ui.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,29 +28,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.foxridge.towerfox.ui.ServerAddressActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.foxridge.towerfox.ui.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.foxridge.towerfox.ui.LoginActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.foxridge.towerfox.ui.AddProjectActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.foxridge.towerfox.ui.PhotosViewActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.foxridge.towerfox.ui.SettingsActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.foxridge.towerfox.ui.CategoriesActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.foxridge.towerfox.ui.RejectionDetailActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.foxridge.towerfox.ui.TakeNewPhotoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.foxridge.towerfox.ui.PhotosDetailActivity"
-            android:screenOrientation="portrait"/>
-
-
+        <activity
+            android:name=".ui.ServerAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AddProjectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PhotosViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.CategoriesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.RejectionDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TakeNewPhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PhotosDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.PhotoZoomViewActivity"></activity>
     </application>
 
 </manifest>

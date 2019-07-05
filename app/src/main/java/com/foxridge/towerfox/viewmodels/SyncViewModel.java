@@ -1238,7 +1238,7 @@ public class SyncViewModel extends ViewModel {
                     }
                     File noNameFile = new File(dir, ".nomedia");
                     if (noNameFile.exists()) {
-                        return imageURL
+                        return imageURL;
                     }
 
                     file = new File(dir, imagepath);

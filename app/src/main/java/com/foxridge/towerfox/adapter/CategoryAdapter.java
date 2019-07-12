@@ -1,6 +1,8 @@
 package com.foxridge.towerfox.adapter;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +21,8 @@ import com.chauthai.swipereveallayout.ViewBinderHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -172,9 +176,23 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return ITEM_VIEW_TYPE_ITEM;//items.get(position).getBud().getType() == 0 ? ITEM_VIEW_TYPE_ITEM : ITEM_VIEW_TYPE_HEADER;
     }
 
-    public void setItems(List<CategoryDisplayModel> items) {
-        this.items = items;
+    public void setItems(final List<CategoryDisplayModel> items) {
+        this.items.clear();
         notifyDataSetChanged();
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        CategoryAdapter.this.items = items;
+                        notifyDataSetChanged();
+                    }
+                });
+
+            }
+        }, 300);
     }
 
 

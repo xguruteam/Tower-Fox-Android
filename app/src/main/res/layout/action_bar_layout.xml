@@ -39,7 +39,7 @@
     </LinearLayout>
     <com.foxridge.towerfox.views.CustomFontTextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/string_title"
         android:textColor="@color/colorWhite"
@@ -47,7 +47,8 @@
         android:textSize="18sp"
         android:layout_centerInParent="true"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"/>
+        android:layout_marginLeft="140dp"
+        android:gravity="center"/>
     <LinearLayout
         android:id="@+id/btn_right"
         android:layout_width="wrap_content"

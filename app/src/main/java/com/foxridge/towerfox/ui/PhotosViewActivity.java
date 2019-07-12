@@ -253,7 +253,7 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
             });
             builder.show();
         } else {
-            EasyImage.openCamera(this, 0);
+            EasyImage.openChooserWithGallery(this, null, 0);
         }
     }
 
@@ -313,7 +313,7 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
         switch (requestCode) {
             case REQUEST_CAMERA_PERMISSION: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    EasyImage.openCamera(this, 0);
+                    EasyImage.openChooserWithGallery(this, null, 0);
                 } else {
                     Toast.makeText(this, R.string.access_denied, Toast.LENGTH_SHORT).show();
                 }

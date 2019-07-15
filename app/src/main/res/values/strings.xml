@@ -57,4 +57,10 @@
     <string name="can_t_access_your_account">Can\'t access your account?</string>
     <string name="support">Support</string>
     <string name="example_photo">Example Photo</string>
+    <string name="button_allow">Allow</string>
+    <string name="button_deny">Deny</string>
+    <string name="permission_pick_rationale">READ_EXTERNAL_STORAGE permission is needed to pick image.</string>
+    <string name="permission_crop_rationale">WRITE_EXTERNAL_STORAGE permission is needed to save cropped image.</string>
+    <string name="permission_denied">Permission was denied. Please consider granting it in order to use all features.</string>
+    <string name="permission_denied_never_ask_again">Permission was denied with never ask again.</string>
 </resources>

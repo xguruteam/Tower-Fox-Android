@@ -81,6 +81,7 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
     NavigationStack navigationStack;
     private static final int REQUEST_CAMERA = 103;
     private final static int REQUEST_TAKE_PHOTO = 105;
+    private final static int REQUEST_CROP_PHOTO = 107;
 
     String currentImagePath = null;
 
@@ -275,6 +276,22 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
             }else{
                 this.onResume();
             }
+        }else if (requestCode == REQUEST_CROP_PHOTO ) {
+            if (resultCode == RESULT_OK) {
+//                Globals.getInstance().storage_saveObject("ItemName", edtPhotoName.getText().toString());
+//                Globals.getInstance().storage_saveObject("Description", edtPhotoDescription.getText().toString());
+                String imagePath = data.getStringExtra("imagePath");
+                File imageFile = new File(imagePath);
+                Log.e("Camera", "file: " + imageFile.getAbsolutePath() + ", " + imageFile.length());
+                Globals.getInstance().storage_saveObject("photoPath", imageFile.getAbsolutePath());
+                Globals.getInstance().storage_saveObject("isAdhoc", false);
+                Intent intent = new Intent(PhotosViewActivity.this, PhotosDetailActivity.class);
+                startActivityForResult(intent, REQUEST_TAKE_PHOTO);
+                overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+//                viewModel.sendImage(imageFile);
+            }else{
+                this.onResume();
+            }
         }else{
                 EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
                     @Override
@@ -294,15 +311,10 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-//                Globals.getInstance().storage_saveObject("ItemName", edtPhotoName.getText().toString());
-//                Globals.getInstance().storage_saveObject("Description", edtPhotoDescription.getText().toString());
-                        Log.e("Camera", "file: " + imageFile.getAbsolutePath() + ", " + imageFile.length());
-                        Globals.getInstance().storage_saveObject("photoPath", imageFile.getAbsolutePath());
-                        Globals.getInstance().storage_saveObject("isAdhoc", false);
-                        Intent intent = new Intent(PhotosViewActivity.this, PhotosDetailActivity.class);
-                        startActivityForResult(intent, REQUEST_TAKE_PHOTO);
-                        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
-//                viewModel.sendImage(imageFile);
+
+                        Intent intent = new Intent(PhotosViewActivity.this, PhotoCropActivity.class);
+                        intent.putExtra("imagePath", imageFile.getAbsolutePath());
+                        startActivityForResult(intent, REQUEST_CROP_PHOTO);
                     }
                 });
             }

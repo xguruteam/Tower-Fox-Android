@@ -58,7 +58,8 @@
         <activity
             android:name=".ui.PhotosDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.PhotoZoomViewActivity"></activity>
+        <activity android:name=".ui.PhotoZoomViewActivity" />
+        <activity android:name=".ui.PhotoCropActivity"></activity>
     </application>
 
 </manifest>

@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.foxridge.towerfox.App;
 import com.foxridge.towerfox.R;
 import com.foxridge.towerfox.model.NavigationStack;
 import com.foxridge.towerfox.model.Photos;
@@ -55,8 +56,8 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
     @BindView(R.id.tv_title)
     CustomFontTextView tvTitle;
 
-    @BindView(R.id.btn_top)
-    LinearLayout topButton;
+    @BindView(R.id.btn_delete_action)
+    LinearLayout deleteButton;
     @BindView(R.id.iv_top_action)
     ImageView ivTop;
     @BindView(R.id.tv_top_action)
@@ -121,6 +122,7 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
         tvTitle.setText(R.string.take_photo);
         btnTakePhoto.setOnClickListener(this);
         btnRejectionDetail.setOnClickListener(this);
+        deleteButton.setOnClickListener(this);
     }
 
     @Override
@@ -136,6 +138,9 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
             case R.id.btn_rejection_detail:
                 startActivity(new Intent(PhotosViewActivity.this, RejectionDetailActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+                break;
+            case R.id.btn_delete_action:
+                deletePhoto();
                 break;
         }
     }
@@ -202,16 +207,25 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 ivPhoto.setImageBitmap(myBitmap);
                 currentImagePath = imgFile.toURI().toString();
+            } else {
+                ivPhoto.setImageResource(R.drawable.ic_camera_gray);
+                currentImagePath = null;
             }
         }
         if (photodetail.getStatus() == 4) {
             btnTakePhoto.setVisibility(View.GONE);
+            deleteButton.setVisibility(View.GONE);
+        } else if (photodetail.getStatus() == 3 || (photodetail.getStatus() == 2)) {
+            btnTakePhoto.setVisibility(View.VISIBLE);
+            deleteButton.setVisibility(View.VISIBLE);
         }else{
             btnTakePhoto.setVisibility(View.VISIBLE);
+            deleteButton.setVisibility(View.GONE);
         }
         Globals.getInstance().storage_saveObject("Comments", photodetail.getComments() == null ? "" : photodetail.getComments());
         Globals.getInstance().storage_saveObject("ReviewerName", photodetail.getTakenBy());
         Globals.getInstance().storage_saveObject("ReviewDate", photodetail.getTakenDate());
+        Globals.getInstance().storage_saveObject("TakenDate", photodetail.getTakenDate());
         Globals.getInstance().storage_saveObject("PhotoStatus", photodetail.getStatus());
 //        if (Globals.getInstance().categoriesStack.size() > 0) {
 //            String categoryRoot = "";
@@ -233,6 +247,26 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
                 syncViewModel.getCategoryLocation(photodetail.getAdhocPhotoID(), photodetail.getParentCategoryID());
             }
         }
+    }
+
+    public void deletePhoto() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("Attention!").setMessage("Are you sure you want to delete the photo?").setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                String userName = Globals.getInstance().storage_loadString("UserName");
+                String takenDate = Globals.getInstance().storage_loadString("TakenDate");
+                String adhocPhotoID = Globals.getInstance().storage_loadString("AdhocPhotoID");
+                App.getApp().getProjectsRepository().resetPhoto(userName, takenDate, adhocPhotoID);
+                syncViewModel.getDisplayItemCount();
+            }
+        });
+        builder.show();
     }
 
 

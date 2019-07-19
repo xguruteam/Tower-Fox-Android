@@ -230,7 +230,6 @@ public class CategoryFragment extends BaseFragment {
 	}
 
 	public void setObservers() {
-		syncViewModel.getPhotoRemainingCount();
 		syncViewModel.getPhotoRemainingModels().observe(this, new Observer<List<PhotoRemainingModel>>() {
 			@Override
 			public void onChanged(@Nullable List<PhotoRemainingModel> photoRemainingModels) {
@@ -368,6 +367,7 @@ public class CategoryFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		syncViewModel.getPhotoRemainingCount();
 	}
 
 	@Override

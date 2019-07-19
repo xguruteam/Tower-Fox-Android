@@ -2,6 +2,7 @@ package com.foxridge.towerfox.ui;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
@@ -16,6 +17,7 @@ import android.media.ExifInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -257,31 +259,40 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
     }
 
     public void delete() {
-        if (Globals.getInstance().storage_loadInteger("ProjectStatus") == 1) {
-            String userName = Globals.getInstance().storage_loadString("UserName");
-            String takenDate = Globals.getInstance().storage_loadString("TakenDate");
-            String adhocPhotoID = Globals.getInstance().storage_loadString("AdhocPhotoID");
-            App.getApp().getProjectsRepository().resetPhoto(userName, takenDate, adhocPhotoID);
-        }
-        String filepath = Globals.getInstance().storage_loadString("photoPath");
-        File file1 = new File(filepath);
-        try {
-            if (file1.exists()) {
-                boolean isdeleted = file1.createNewFile();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("Attention!").setMessage("Are you sure you want to delete the photo?").setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
-        } catch (Exception e) {
-            Log.e("deleteFile", e.getLocalizedMessage());
-        }
-        String dirstr = Globals.getInstance().IMAGE_LOCATION_PATH + "/CapturedPhotos/";
-        File dir = new File(dirstr);
-        File file = new File(dir, imageNameStr);
-        try {
-            if (file.exists()) {
-                boolean isdeleted = file.createNewFile();
-            }
-        } catch (Exception e) {
-            Log.e("deleteFile", e.getLocalizedMessage());
-        }
+        }).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+//        if (Globals.getInstance().storage_loadInteger("ProjectStatus") == 1) {
+                String userName = Globals.getInstance().storage_loadString("UserName");
+                String takenDate = Globals.getInstance().storage_loadString("TakenDate");
+                String adhocPhotoID = Globals.getInstance().storage_loadString("AdhocPhotoID");
+                App.getApp().getProjectsRepository().resetPhoto(userName, takenDate, adhocPhotoID);
+//        }
+                String filepath = Globals.getInstance().storage_loadString("photoPath");
+                File file1 = new File(filepath);
+                try {
+                    if (file1.exists()) {
+                        boolean isdeleted = file1.createNewFile();
+                    }
+                } catch (Exception e) {
+                    Log.e("deleteFile", e.getLocalizedMessage());
+                }
+                String dirstr = Globals.getInstance().IMAGE_LOCATION_PATH + "/CapturedPhotos/";
+                File dir = new File(dirstr);
+                File file = new File(dir, imageNameStr);
+                try {
+                    if (file.exists()) {
+                        boolean isdeleted = file.createNewFile();
+                    }
+                } catch (Exception e) {
+                    Log.e("deleteFile", e.getLocalizedMessage());
+                }
 
         /*
         String filePath = tempGalleryPath();
@@ -291,8 +302,11 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
         }
         */
 
-        onBackPressed();
-        overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+                onBackPressed();
+                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+            }
+        });
+        builder.show();
     }
 
 

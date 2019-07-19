@@ -67,6 +67,7 @@ public class TakeNewPhotoActivity extends BaseActivity implements View.OnClickLi
     private KProgressHUD loader;
     private static final int REQUEST_CAMERA = 104;
     private static final int REQUEST_CAMERA_PERMISSION = 105;
+    private final static int REQUEST_CROP_PHOTO = 107;
 
     Uri imageUri;
     private final static int REQUEST_TAKE_PHOTO = 106;
@@ -167,6 +168,22 @@ public class TakeNewPhotoActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
             }
+        }else if (requestCode == REQUEST_CROP_PHOTO ) {
+            if (resultCode == RESULT_OK) {
+                String imagePath = data.getStringExtra("imagePath");
+                File imageFile = new File(imagePath);
+                Globals.getInstance().storage_saveObject("ItemName", edtPhotoName.getText().toString());
+                Globals.getInstance().storage_saveObject("Description", edtPhotoDescription.getText().toString());
+                Log.e("Camera", "file: " + imageFile.getAbsolutePath() + ", " + imageFile.length());
+                Globals.getInstance().storage_saveObject("photoPath", imageFile.getAbsolutePath());
+                Globals.getInstance().storage_saveObject("isAdhoc", true);
+                Globals.getInstance().storage_saveObject("isRList", false);
+                startActivityForResult(new Intent(TakeNewPhotoActivity.this, PhotosDetailActivity.class), REQUEST_TAKE_PHOTO);
+                overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+//                viewModel.sendImage(imageFile);
+            } else {
+                this.onResume();
+            }
         }else{
             EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
                 @Override
@@ -186,15 +203,10 @@ public class TakeNewPhotoActivity extends BaseActivity implements View.OnClickLi
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Globals.getInstance().storage_saveObject("ItemName", edtPhotoName.getText().toString());
-                    Globals.getInstance().storage_saveObject("Description", edtPhotoDescription.getText().toString());
-                    Log.e("Camera", "file: " + imageFile.getAbsolutePath() + ", " + imageFile.length());
-                    Globals.getInstance().storage_saveObject("photoPath", imageFile.getAbsolutePath());
-                    Globals.getInstance().storage_saveObject("isAdhoc", true);
-                    Globals.getInstance().storage_saveObject("isRList", false);
-                    startActivityForResult(new Intent(TakeNewPhotoActivity.this, PhotosDetailActivity.class), REQUEST_TAKE_PHOTO);
-                    overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
-//                viewModel.sendImage(imageFile);
+
+                    Intent intent = new Intent(TakeNewPhotoActivity.this, PhotoCropActivity.class);
+                    intent.putExtra("imagePath", imageFile.getAbsolutePath());
+                    startActivityForResult(intent, REQUEST_CROP_PHOTO);
                 }
             });
         }

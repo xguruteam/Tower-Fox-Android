@@ -118,6 +118,33 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/btn_delete_action"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="8dp"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:visibility="gone">
+        <com.foxridge.towerfox.views.CustomFontTextView
+            android:id="@+id/tv_delete_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:textColor="@color/colorWhite"
+            app:font_style="medium"
+            android:textSize="16sp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+
     <ImageView
         android:id="@+id/iv_action_bar_shadow"
         android:layout_width="match_parent"

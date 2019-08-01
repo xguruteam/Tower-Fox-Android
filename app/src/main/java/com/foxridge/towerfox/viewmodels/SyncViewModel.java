@@ -1470,9 +1470,6 @@ public class SyncViewModel extends ViewModel {
                         }else if (catDisplayModel.getIStatus() == 0 || catDisplayModel.getIStatus() == 7) {
                             rejectedList.add(catDisplayModel);
                         }
-                        else {
-                            throw new IllegalArgumentException();
-                        }
                     }else {
                         if (catDisplayModel.get_required() != 0 || catDisplayModel.get_rejected() != 0 || catDisplayModel.get_taken() != 0 || catDisplayModel.get_approved() != 0) {
                             categoryList.add(catDisplayModel);

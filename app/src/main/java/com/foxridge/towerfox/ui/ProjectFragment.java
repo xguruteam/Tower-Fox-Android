@@ -455,10 +455,6 @@ public class ProjectFragment extends BaseFragment {
 		Globals.getInstance().storage_saveObject("PositionID", "0");
 		Globals.getInstance().storage_saveObject("RequiredSectorPosition", false);
 
-		String path = "/" + projectDisplayModel.getProjectName();
-		Globals.getInstance().storage_saveObject("GalleryPath", path);
-		Log.e("gallery path", path);
-
 		NavigationStack navigationStack = new NavigationStack();
 		navigationStack.setParentID("0");
 		navigationStack.setSectorID("0");

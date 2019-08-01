@@ -232,12 +232,6 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
             photos.setAdhocPhotoID(Globals.getInstance().storage_loadString("AdhocPhotoID"));
             photos.setAdhoc(true);
             syncViewModel.updateCapturedPhoto(photos);
-
-            String path = Globals.getInstance().storage_loadString("GalleryPath");
-            int index = path.lastIndexOf("/");
-            path = path.substring(0, index);
-            Globals.getInstance().storage_saveObject("GalleryPath", path);
-            Log.e("gallery path", path);
         }
         try {
             Thread.sleep(100);
@@ -293,14 +287,6 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
                 } catch (Exception e) {
                     Log.e("deleteFile", e.getLocalizedMessage());
                 }
-
-        /*
-        String filePath = tempGalleryPath();
-        File galleryFile = new File(filePath);
-        if (galleryFile.delete() == false ) {
-            Crashlytics.getInstance().crash();
-        }
-        */
 
                 onBackPressed();
                 overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
@@ -384,7 +370,7 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
 
     public String dateConversion() {
         String conversionDate = "";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-DD-YYYY-HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-DD-yyyy-HH:mm:ss");
         conversionDate = dateFormat.format(new Date());
         conversionDate = conversionDate.replace("-", "_");
         conversionDate = conversionDate.replace("/", "_");
@@ -486,31 +472,6 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
             e.printStackTrace();
 //            Crashlytics.getInstance().crash();
         }
-    }
-
-    private String tempGalleryPath() {
-        String projectID = Globals.getInstance().storage_loadString("ProjectID");
-        if (projectID.length() < 1) {
-            Crashlytics.getInstance().crash();
-        }
-        String path = "/" + projectID + "/" + imageNameStr;
-//        String path = Globals.getInstance().storage_loadString("GalleryPath");
-//        if (Globals.getInstance().storage_loadBool("isAdhoc")) {
-//            int index = path.indexOf("/", 1);
-//            if (index > 1) {
-//                path = path.substring(0, index);
-//            }
-//            path += "/" + imageNameStr;
-//        }
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        ApplicationInfo applicationInfo = this.getApplicationInfo();
-        int stringId = applicationInfo.labelRes;
-        String appName = stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : this.getString(stringId);
-        if (appName.length() < 1) {
-            Crashlytics.getInstance().crash();
-        }
-        String filePath = storageDir.getAbsolutePath() + "/" + appName + path;
-        return filePath;
     }
 
     private void copyFile(File inputFile, File outputFile) {

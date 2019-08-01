@@ -147,11 +147,6 @@ public class PhotosViewActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onBackPressed() {
-        String path = Globals.getInstance().storage_loadString("GalleryPath");
-        int index = path.lastIndexOf("/");
-        path = path.substring(0, index);
-        Globals.getInstance().storage_saveObject("GalleryPath", path);
-        Log.e("gallery path", path);
         super.onBackPressed();
     }
 

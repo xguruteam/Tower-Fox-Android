@@ -191,13 +191,6 @@ public class CategoryFragment extends BaseFragment {
 				Globals.getInstance().navigationStack.remove(Globals.getInstance().navigationStack.size() - 1);
 				if (Globals.getInstance().categoriesStack.size() > 0) {
 					Globals.getInstance().categoriesStack.remove(Globals.getInstance().categoriesStack.size() - 1);
-
-					String path = Globals.getInstance().storage_loadString("GalleryPath");
-					int index = path.lastIndexOf("/");
-					path = path.substring(0, index);
-					Globals.getInstance().storage_saveObject("GalleryPath", path);
-					Log.e("gallery path", path);
-
 				}
 				if (Globals.getInstance().navigationStack.size() > 0) {
 					EventBus.getDefault().post(new EventPush("refresh", "category"));
@@ -213,13 +206,6 @@ public class CategoryFragment extends BaseFragment {
 				Globals.getInstance().navigationStack.add(navigationStack);
 				mAct.backFragment("top");
 				EventBus.getDefault().post(new EventPush("refresh", "category"));
-
-				String path = Globals.getInstance().storage_loadString("GalleryPath");
-				int index = path.indexOf("/", 1);
-				path = path.substring(0, index);
-				Globals.getInstance().storage_saveObject("GalleryPath", path);
-				Log.e("gallery path", path);
-
 				break;
 			case R.id.btn_add_photo:
 				Intent newintent = new Intent(mAct, TakeNewPhotoActivity.class);
@@ -300,12 +286,6 @@ public class CategoryFragment extends BaseFragment {
 		Globals.getInstance().storage_saveObject("RequiredSectorPosition", model.isRequireSectorPosition());
 		Globals.getInstance().storage_saveObject("PositionID", model.getIPositionID());
 
-		String path = Globals.getInstance().storage_loadString("GalleryPath");
-		path += "/" + model.getCategoryName();
-		Globals.getInstance().storage_saveObject("GalleryPath", path);
-		Log.e("gallery path", path);
-
-
 		NavigationStack navigationStack = new NavigationStack();
 		navigationStack.setParentID(Globals.getInstance().storage_loadString("ParentID"));
 		navigationStack.setSectorID(Globals.getInstance().storage_loadString("SectorID"));
@@ -352,11 +332,6 @@ public class CategoryFragment extends BaseFragment {
 			}
 		}
 		Globals.getInstance().storage_saveObject("isRList", false);
-
-		String path = Globals.getInstance().storage_loadString("GalleryPath");
-		path += "/" + model.getItemName();
-		Globals.getInstance().storage_saveObject("GalleryPath", path);
-		Log.e("gallery path", path);
 
 		Intent intent = new Intent(mAct, PhotosViewActivity.class);
 		mAct.startActivityForResult(intent, REQUEST_TAKEPHOTO);

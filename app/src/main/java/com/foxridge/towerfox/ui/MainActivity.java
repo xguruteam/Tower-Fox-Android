@@ -162,10 +162,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Globals.getInstance().storage_saveObject("isRList", true);
 
                 RejectDisplayModel model = rejectedAdapter.getItem(position);
-                String path = "/" + model.getProjectID() + "/" + model.getCategoryName() +"/" + model.getItemName();
-                Globals.getInstance().storage_saveObject("GalleryPath", path);
-                Log.e("gallery path", path);
-
                 startActivity(new Intent(MainActivity.this, PhotosViewActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
             }

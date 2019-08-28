@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.foxridge.towerfox.R;
+import com.foxridge.towerfox.service.RestService;
 import com.isseiaoki.simplecropview.CropImageView;
 import com.isseiaoki.simplecropview.callback.CropCallback;
 import com.isseiaoki.simplecropview.callback.LoadCallback;
@@ -213,9 +214,13 @@ import permissions.dispatcher.RuntimePermissions;
   public String getDirPath() {
     String dirPath = "";
     File imageDir = null;
-    File extStorageDir = getActivity().getExternalCacheDir();
-    if (extStorageDir.canWrite()) {
-      imageDir = new File(extStorageDir.getPath() + "/simplecropview");
+    if (getContext() != null) {
+      File extStorageDir = getContext().getExternalCacheDir();
+      if (extStorageDir.canWrite()) {
+        imageDir = new File(extStorageDir.getPath() + "/simplecropview");
+      }
+    } else {
+      RestService.logOnServer("PhotoCrop Null Context.");
     }
     if (imageDir != null) {
       if (!imageDir.exists()) {
@@ -377,7 +382,11 @@ import permissions.dispatcher.RuntimePermissions;
     @Override
     public void onSuccess(Uri outputUri) {
       dismissProgress();
-      ((PhotoCropActivity) getActivity()).startResultActivity(outputUri);
+      if (getActivity() != null) {
+          ((PhotoCropActivity) getActivity()).startResultActivity(outputUri);
+      } else {
+        RestService.logOnServer("PhotoCrop Null Activity.");
+      }
     }
 
     @Override

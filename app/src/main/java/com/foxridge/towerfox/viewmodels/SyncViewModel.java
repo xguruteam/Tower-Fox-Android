@@ -517,7 +517,7 @@ public class SyncViewModel extends ViewModel {
 
     public void uploadImages() {
         showProgress.postValue(false);
-        if (Globals.getInstance().uploadImageNamesList.size() > 0) {
+        if (Globals.getInstance().uploadImageNamesList.size() > 0 || Globals.getInstance().uploadCount > Globals.getInstance().uploadImageNamesList.size()) {
             uploadCapturedPhotos.postValue(Globals.getInstance().uploadCount);
             Log.e("UploadImages", String.valueOf(Globals.getInstance().uploadCount));
             String imagePath = "";
@@ -580,6 +580,7 @@ public class SyncViewModel extends ViewModel {
 
         }else{
             uploadError.postValue(true);
+            RestService.logOnServer("UploadImages Invalid Index.");
         }
     }
 
@@ -1394,6 +1395,10 @@ public class SyncViewModel extends ViewModel {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                if (Globals.getInstance().navigationStack.size() < 1) {
+                    RestService.logOnServer("NavigationStack Invalid Size.");
+                    return;
+                }
                 String sectorID = Globals.getInstance().navigationStack.get(Globals.getInstance().navigationStack.size() - 1).getSectorID();
                 String positionID = Globals.getInstance().navigationStack.get(Globals.getInstance().navigationStack.size() - 1).getPositionID();
                 String parentID = Globals.getInstance().navigationStack.get(Globals.getInstance().navigationStack.size() - 1).getParentID();

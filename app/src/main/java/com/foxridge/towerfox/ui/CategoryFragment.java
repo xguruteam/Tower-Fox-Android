@@ -103,7 +103,7 @@ public class CategoryFragment extends BaseFragment {
 		tvTitle.setText(R.string.photos);
 		btnAddPhoto.setOnClickListener(this);
 
-		navigationStack = Globals.getInstance().navigationStack.get(Globals.getInstance().navigationStack.size() - 1);
+//		navigationStack = Globals.getInstance().navigationStack.get(Globals.getInstance().navigationStack.size() - 1);
 		tvProjectID.setText(Globals.getInstance().storage_loadString("ProjectID"));
 		tvProjectName.setText(Globals.getInstance().storage_loadString("ProjectName"));
 		tvCasperID.setText(Globals.getInstance().storage_loadString("PaceID"));

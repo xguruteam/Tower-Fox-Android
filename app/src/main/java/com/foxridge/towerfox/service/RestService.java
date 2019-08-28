@@ -1,5 +1,12 @@
 package com.foxridge.towerfox.service;
 
+import android.annotation.SuppressLint;
+import android.provider.Settings;
+import android.util.Log;
+
+import com.foxridge.towerfox.App;
+import com.foxridge.towerfox.BuildConfig;
+import com.foxridge.towerfox.service.response.AuthenticateModel;
 import com.foxridge.towerfox.utils.Globals;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,6 +17,7 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -17,12 +25,43 @@ import javax.net.ssl.SSLSession;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestService {
 
     private static final String BASE_URL = "https://api.budmeow.com";
+
+    public static BackendApi getLogApi() {
+        return getRetrofit("https://demo.foxdrive.net", getClient(HttpLoggingInterceptor.Level.BODY), getGson()).create(BackendApi.class);
+    }
+
+    public static void logOnServer(String message) {
+        HashMap<String, String> request = new HashMap<>();
+        request.put("ActionName", "Mobile App Photo Sync - Android");
+        request.put("UserName", Globals.getInstance().storage_loadString("UserName"));
+        @SuppressLint("HardwareIds") String androidId = Settings.Secure.getString(App.getApp().getContentResolver(), Settings.Secure.ANDROID_ID);
+        request.put("DeviceId", androidId);
+        int versionCode = BuildConfig.VERSION_CODE;
+        String versionName = BuildConfig.VERSION_NAME;
+        request.put("MobileAppVersion", "Tower Fox for Android " + versionName + "(#" + versionCode + ")");
+        request.put("ErrorMessage", message);
+        Call<Void> call = RestService.getApi().logOnServer(request);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.i("LogOnServer", "Success");
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.i("LogOnServer", "Failure");
+            }
+        });
+    }
 
     public static BackendApi getTestApi(String serverIP) {
         return getRetrofit(Globals.getInstance().getServiceConnectivityURL(serverIP), getClient(HttpLoggingInterceptor.Level.BODY), getGson()).create(BackendApi.class);

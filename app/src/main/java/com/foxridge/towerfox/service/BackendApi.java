@@ -74,6 +74,10 @@ public interface BackendApi {
     Call<Object>
     updateProjectPhotos(@Body ArrayList<HashMap<String, String>> request);
 
+    @POST("LogSyncError")
+    Call<Void>
+    logOnServer(@Body HashMap<String, String> request);
+
 
 //
 //    @POST("login")

@@ -23,6 +23,8 @@ import com.foxridge.towerfox.model.NavigationStack;
 import com.foxridge.towerfox.model.PhotoRemainingModel;
 import com.foxridge.towerfox.model.ProgressItem;
 import com.foxridge.towerfox.model.RejectDisplayModel;
+import com.foxridge.towerfox.service.BackendApi;
+import com.foxridge.towerfox.service.RestService;
 import com.foxridge.towerfox.utils.Globals;
 import com.foxridge.towerfox.viewmodels.SyncViewModel;
 import com.foxridge.towerfox.views.CustomFontTextView;
@@ -188,14 +190,18 @@ public class CategoryFragment extends BaseFragment {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.btn_left:
-				Globals.getInstance().navigationStack.remove(Globals.getInstance().navigationStack.size() - 1);
-				if (Globals.getInstance().categoriesStack.size() > 0) {
-					Globals.getInstance().categoriesStack.remove(Globals.getInstance().categoriesStack.size() - 1);
-				}
 				if (Globals.getInstance().navigationStack.size() > 0) {
-					EventBus.getDefault().post(new EventPush("refresh", "category"));
+					Globals.getInstance().navigationStack.remove(Globals.getInstance().navigationStack.size() - 1);
+					if (Globals.getInstance().categoriesStack.size() > 0) {
+						Globals.getInstance().categoriesStack.remove(Globals.getInstance().categoriesStack.size() - 1);
+					}
+					if (Globals.getInstance().navigationStack.size() > 0) {
+						EventBus.getDefault().post(new EventPush("refresh", "category"));
+					}else{
+						EventBus.getDefault().post(new EventPush("upload", "project"));
+					}
 				}else{
-					EventBus.getDefault().post(new EventPush("upload", "project"));
+					RestService.logOnServer("CategoryFragment, onClick - btn_let, Invalid Navigation Stack.");
 				}
 				mAct.backFragment(false);
 				break;

@@ -517,7 +517,7 @@ public class SyncViewModel extends ViewModel {
 
     public void uploadImages() {
         showProgress.postValue(false);
-        if (Globals.getInstance().uploadImageNamesList.size() > 0 || Globals.getInstance().uploadCount > Globals.getInstance().uploadImageNamesList.size()) {
+        if ((Globals.getInstance().uploadImageNamesList.size() > 0) && (Globals.getInstance().uploadCount < Globals.getInstance().uploadImageNamesList.size())) {
             uploadCapturedPhotos.postValue(Globals.getInstance().uploadCount);
             Log.e("UploadImages", String.valueOf(Globals.getInstance().uploadCount));
             String imagePath = "";

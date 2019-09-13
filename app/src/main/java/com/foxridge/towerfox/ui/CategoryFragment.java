@@ -365,7 +365,7 @@ public class CategoryFragment extends BaseFragment {
 		}
 		if (event.getMessage().equals("uploadimage")) {
 			if (syncViewModel != null) {
-				Globals.getInstance().storage_saveObject("SYNC", "");
+//				Globals.getInstance().storage_saveObject("SYNC", "");
 				syncViewModel.uploadDataToServer();
 			}
 		}

@@ -57,7 +57,7 @@ public class PhotoCropActivity extends AppCompatActivity implements View.OnClick
         Uri imageUri = Uri.fromFile(new File(imagePath));
 
         if(savedInstanceState == null){
-            PhotoCropFragment cropFragment = PhotoCropFragment.newInstance();
+            PhotoCropFragment cropFragment = PhotoCropFragment.newInstance(this);
             cropFragment.mSourceUri = imageUri;
             getSupportFragmentManager().beginTransaction().add(R.id.container, cropFragment).commit();
         }

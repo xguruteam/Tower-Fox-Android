@@ -56,15 +56,17 @@ import permissions.dispatcher.RuntimePermissions;
   private Bitmap.CompressFormat mCompressFormat = Bitmap.CompressFormat.JPEG;
   private RectF mFrameRect = null;
   public Uri mSourceUri = null;
+  private Context mContext;
 
   // Note: only the system can call this constructor by reflection.
   public PhotoCropFragment() {
   }
 
-  public static PhotoCropFragment newInstance() {
+  public static PhotoCropFragment newInstance(Context context) {
     PhotoCropFragment fragment = new PhotoCropFragment();
     Bundle args = new Bundle();
     fragment.setArguments(args);
+    fragment.mContext = context;
     return fragment;
   }
 
@@ -209,7 +211,7 @@ import permissions.dispatcher.RuntimePermissions;
   }
 
   public Uri createSaveUri() {
-    return createNewUri(App.getApp().getApplicationContext(), mCompressFormat);
+    return createNewUri(mContext, mCompressFormat);
   }
 
   public String getDirPath() {
@@ -288,7 +290,7 @@ import permissions.dispatcher.RuntimePermissions;
   }
 
   private void showRationaleDialog(@StringRes int messageResId, final PermissionRequest request) {
-    new AlertDialog.Builder(getActivity()).setPositiveButton(R.string.button_allow,
+    new AlertDialog.Builder(mContext).setPositiveButton(R.string.button_allow,
         new DialogInterface.OnClickListener() {
           @Override
           public void onClick(@NonNull DialogInterface dialog, int which) {

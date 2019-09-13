@@ -392,6 +392,18 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
+    private String tempGalleryPath() {
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        ApplicationInfo applicationInfo = App.getApp().getBaseContext().getApplicationInfo();
+        int stringId = applicationInfo.labelRes;
+        String appName = stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : App.getApp().getBaseContext().getString(stringId);
+        if (appName.length() < 1) {
+            Crashlytics.getInstance().crash();
+        }
+        String filePath = storageDir.getAbsolutePath() + "/" + appName + "/Backup/" + imageNameStr;
+        return filePath;
+    }
+
     public void saveImage() {
         String filepath = Globals.getInstance().storage_loadString("photoPath");
         Bitmap originalBitmap = loadBitmap(filepath);
@@ -401,38 +413,39 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
             dir.mkdir();
         }
 
-        /*
+
         String galleryFilePath = tempGalleryPath();
         Log.e("gallery path", "save image " + galleryFilePath);
         File galleryFile = new File(galleryFilePath);
         File dir2 = galleryFile.getParentFile();
         if (!dir2.exists()) {
             if (!dir2.mkdirs()) {
-                Crashlytics.getInstance().crash();
+//                Crashlytics.getInstance().crash();
             }
         }
 
         File noNameFile = new File(dir2, ".nomedia");
         if (noNameFile.exists()) {
-            Crashlytics.getInstance().crash();
+            noNameFile.delete();
+//            Crashlytics.getInstance().crash();
         }
-        */
+
 
         File file = new File(dir, imageNameStr);
         try {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            /*
+
             if (!galleryFile.exists()) {
                 if (!galleryFile.createNewFile()) {
-                    Crashlytics.getInstance().crash();
+//                    Crashlytics.getInstance().crash();
                 }
             }
-            */
+
 
             FileOutputStream out = new FileOutputStream(file);
-//            FileOutputStream out_gallery = new FileOutputStream(galleryFile);
+            FileOutputStream out_gallery = new FileOutputStream(galleryFile);
             Bitmap mutableBitmap = originalBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
             // NEWLY ADDED CODE STARTS HERE [
@@ -463,9 +476,9 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
             ivPhoto.setImageBitmap(mutableBitmap);
             currentImagePath = file.toURI().toString();
 
-//            mutableBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out_gallery);
-//            out_gallery.flush();
-//            out_gallery.close();
+            mutableBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out_gallery);
+            out_gallery.flush();
+            out_gallery.close();
 
 
         } catch (Exception e) {

@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.foxridge.towerfox.App;
 import com.foxridge.towerfox.R;
 import com.foxridge.towerfox.service.RestService;
 import com.isseiaoki.simplecropview.CropImageView;
@@ -208,7 +209,7 @@ import permissions.dispatcher.RuntimePermissions;
   }
 
   public Uri createSaveUri() {
-    return createNewUri(getContext(), mCompressFormat);
+    return createNewUri(App.getApp().getApplicationContext(), mCompressFormat);
   }
 
   public String getDirPath() {

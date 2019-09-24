@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.Crashlytics;
 import com.foxridge.towerfox.App;
 import com.foxridge.towerfox.R;
 import com.foxridge.towerfox.service.RestService;
@@ -60,6 +61,7 @@ import permissions.dispatcher.RuntimePermissions;
 
   // Note: only the system can call this constructor by reflection.
   public PhotoCropFragment() {
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment init");
   }
 
   public static PhotoCropFragment newInstance(Context context) {
@@ -73,18 +75,21 @@ import permissions.dispatcher.RuntimePermissions;
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment onCreate");
     setRetainInstance(true);
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment onCreateView");
     return inflater.inflate(R.layout.fragment_photo_crop, null, false);
   }
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment onViewCreated with savedInstanceState:" + (savedInstanceState != null ? "non-null" : "null"));
     // bind Views
     bindViews(view);
 
@@ -111,6 +116,7 @@ import permissions.dispatcher.RuntimePermissions;
   @Override
   public void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment onSaveInstanceState");
     // save data
     outState.putParcelable(KEY_FRAME_RECT, mCropView.getActualCropRect());
     outState.putParcelable(KEY_SOURCE_URI, mCropView.getSourceUri());
@@ -119,6 +125,7 @@ import permissions.dispatcher.RuntimePermissions;
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent result) {
     super.onActivityResult(requestCode, resultCode, result);
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment onActivityResult with result:" + resultCode + " request:" + requestCode);
     if (resultCode == Activity.RESULT_OK) {
       // reset frame rect
       mFrameRect = null;
@@ -181,6 +188,7 @@ import permissions.dispatcher.RuntimePermissions;
   }
 
   @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) public void cropImage() {
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment cropImage");
     showProgress();
     mCropView.crop(mSourceUri).execute(mCropCallback);
   }
@@ -201,6 +209,7 @@ import permissions.dispatcher.RuntimePermissions;
   }
 
   public void dismissProgress() {
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment dismissProgress");
     if (!isResumed()) return;
     android.support.v4.app.FragmentManager manager = getFragmentManager();
     if (manager == null) return;
@@ -211,7 +220,9 @@ import permissions.dispatcher.RuntimePermissions;
   }
 
   public Uri createSaveUri() {
-    return createNewUri(mContext, mCompressFormat);
+    Uri uri = createNewUri(mContext, mCompressFormat);
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment createSaveUri:" + uri.toString());
+    return uri;
   }
 
   public String getDirPath() {
@@ -361,16 +372,19 @@ import permissions.dispatcher.RuntimePermissions;
   private final LoadCallback mLoadCallback = new LoadCallback() {
     @Override
     public void onSuccess() {
+      Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment LoadCallback onSuccess");
     }
 
     @Override
     public void onError(Throwable e) {
+      Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment LoadCallback onError");
     }
   };
 
   private final CropCallback mCropCallback = new CropCallback() {
     @Override
     public void onSuccess(Bitmap cropped) {
+      Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment CropCallback onSuccess");
       mCropView.save(cropped)
           .compressFormat(mCompressFormat)
           .execute(createSaveUri(), mSaveCallback);
@@ -378,12 +392,14 @@ import permissions.dispatcher.RuntimePermissions;
 
     @Override
     public void onError(Throwable e) {
+      Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment CropCallback onError");
     }
   };
 
   private final SaveCallback mSaveCallback = new SaveCallback() {
     @Override
     public void onSuccess(Uri outputUri) {
+      Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment SaveCallback onSuccess");
       dismissProgress();
       if (getActivity() != null) {
           ((PhotoCropActivity) getActivity()).startResultActivity(outputUri);
@@ -394,6 +410,7 @@ import permissions.dispatcher.RuntimePermissions;
 
     @Override
     public void onError(Throwable e) {
+      Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment SaveCallback onError");
       dismissProgress();
     }
   };

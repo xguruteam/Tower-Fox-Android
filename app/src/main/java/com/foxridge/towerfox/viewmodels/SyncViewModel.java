@@ -411,6 +411,7 @@ public class SyncViewModel extends ViewModel {
     }
 
     public void getProjects() {
+        Crashlytics.log(Log.DEBUG, "buildProjectPhotoQuery", "SyncViewModel getProjects");
         List<ProjectDisplayModel> projects = App.getApp().getProjectsRepository().getDisplayProject();
         if (projects.size() > 0) {
             Globals.getInstance().projectsGlobalArray.clear();
@@ -424,6 +425,7 @@ public class SyncViewModel extends ViewModel {
         }
     }
     public void getProjectsArray() {
+        Crashlytics.log(Log.DEBUG, "buildProjectPhotoQuery", "SyncViewModel getProjectsArray");
         List<ProjectDisplayModel> projects = App.getApp().getProjectsRepository().getDisplayProject();
         if (projects.size() > 0) {
             Globals.getInstance().projectsGlobalArray.clear();
@@ -693,6 +695,7 @@ public class SyncViewModel extends ViewModel {
     }
 
     public ArrayList<HashMap<String, String>> buildProjectPhotoQuery(){
+        Crashlytics.log(Log.DEBUG, "buildProjectPhotoQuery", "SyncViewModel buildProjectPhotoQuery");
         ArrayList<HashMap<String, String>> request = new ArrayList<>();
         if (Globals.getInstance().projectsGlobalArray.size() > 0) {
             for (String projectid : Globals.getInstance().projectsGlobalArray) {
@@ -1346,6 +1349,7 @@ public class SyncViewModel extends ViewModel {
     }
 
     public void deleteDatabaseProject() {
+        Crashlytics.log(Log.DEBUG, "buildProjectPhotoQuery", "SyncViewModel deleteDatabaseProject");
         String deleteProjectID = Globals.getInstance().storage_loadString("DeleteProjectID");
         App.getApp().getProjectsRepository().deleteProject(deleteProjectID);
         Globals.getInstance().projectsGlobalArray.remove(deleteProjectID);

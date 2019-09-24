@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.crashlytics.android.Crashlytics;
 import com.foxridge.towerfox.ui.CategoryFragment;
 import com.foxridge.towerfox.R;
 import com.foxridge.towerfox.adapter.ProjectAdapter;
@@ -83,6 +84,7 @@ public class ProjectFragment extends BaseFragment {
 	@Override
 	protected void initView() {
 		super.initView();
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment initView");
 		loader = KProgressHUD.create(mAct)
 				.setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
 				.setCancellable(true)
@@ -129,6 +131,7 @@ public class ProjectFragment extends BaseFragment {
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment onSaveInstanceState");
 		if (projectAdapter != null) {
 //			projectAdapter.saveStates(outState);
 		}
@@ -148,6 +151,7 @@ public class ProjectFragment extends BaseFragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment onViewCreated");
 		EventBus.getDefault().register(this);
 	}
 
@@ -155,14 +159,17 @@ public class ProjectFragment extends BaseFragment {
 	public void onDestroyView() {
 		super.onDestroyView();
 		EventBus.getDefault().unregister(this);
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment onDestroyView");
 	}
 	@Override
 	public void onResume() {
 		super.onResume();
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment onResume");
 		getProjectList();
 	}
 
 	public void deleteProject(final int position) {
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment deleteProject");
 		AlertDialog.Builder builder = new AlertDialog.Builder(mAct).setTitle("Remove Project").setMessage("Are you sure you want to remove this project form your device?")
 				.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 					@Override
@@ -192,6 +199,7 @@ public class ProjectFragment extends BaseFragment {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.btn_left:
+				Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment btn_Left");
 				projectAdapter.notifyDataSetChanged();
 				if (!Globals.getInstance().storage_loadString("SYNC").equals("")){
 					Helper.showErrorDialog(mAct, "Synchronizing. Please wait.");
@@ -226,10 +234,12 @@ public class ProjectFragment extends BaseFragment {
 	public void onAttach(Context context) {
 		super.onAttach(context);
 		Log.e("my_fragment","setUserVisibleHint: "+true);
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment onAttach");
 	}
 
 	public void checkServerConnectivity() {
 		Log.e("ProjectFragment", "checkServerConnectivity");
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment checkServerConnectivity");
 		if (Globals.getInstance().storage_loadString("SYNC").equals("")) {
 			syncViewModel.checkServerConnectivtiyTest(Globals.getInstance().storage_loadString("SERVER_IP"));
 		}
@@ -237,6 +247,7 @@ public class ProjectFragment extends BaseFragment {
 	}
 
 	public void getProjectList() {
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment getProjectList");
 		if (syncViewModel != null) {
 			Thread thread = new Thread(new Runnable() {
 				@Override
@@ -252,6 +263,7 @@ public class ProjectFragment extends BaseFragment {
 		syncViewModel.getProjectDisplayModels().observe(this, new Observer<List<ProjectDisplayModel>>() {
 			@Override
 			public void onChanged(@Nullable List<ProjectDisplayModel> projectDisplayModels) {
+				Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment observe projectDisplayModels");
 			    if (projectDisplayModels.size() > 0) {
                     viewEmpty.setVisibility(View.GONE);
                 }else{
@@ -265,6 +277,7 @@ public class ProjectFragment extends BaseFragment {
 		syncViewModel.getDownloadCapturedPhotos().observe(this, new Observer<Integer>() {
 			@Override
 			public void onChanged(@Nullable Integer integer) {
+				Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment observe downloadCapturedPhotos");
 				if (!Globals.getInstance().storage_loadString("SYNC").equals("")) {
 					tvProgressDetails.setText("Downloading Captured Photos, Please wait "+integer+" of "+Globals.getInstance().capturedImageNamesList.size());
 					if (integer != null) {
@@ -282,6 +295,7 @@ public class ProjectFragment extends BaseFragment {
 		syncViewModel.getDownloadReferencePhotos().observe(this, new Observer<Integer>() {
 			@Override
 			public void onChanged(@Nullable Integer integer) {
+				Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment observe downloadReferencePhotos");
 				if (!Globals.getInstance().storage_loadString("SYNC").equals("")) {
 					tvProgressDetails.setText("Downloading Reference Photos, Please wait "+integer+" of "+Globals.getInstance().referenceImageNamesList.size());
 					if (integer != null) {
@@ -299,6 +313,7 @@ public class ProjectFragment extends BaseFragment {
 		syncViewModel.getUploadCapturedPhotos().observe(this, new Observer<Integer>() {
 			@Override
 			public void onChanged(@Nullable Integer integer) {
+				Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment observe uploadCapturedPhotos");
 				if (!Globals.getInstance().storage_loadString("SYNC").equals("")) {
 					tvProgressDetails.setText("Uploading CapturedPhotos, Please wait "+integer+" of "+Globals.getInstance().uploadImageNamesList.size());
 					if (integer != null) {
@@ -316,6 +331,7 @@ public class ProjectFragment extends BaseFragment {
 		syncViewModel.getUploadError().observe(this, new Observer<Boolean>() {
 			@Override
 			public void onChanged(@Nullable Boolean aBoolean) {
+				Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment observe uploadError");
 				if (aBoolean != null) {
 					Globals.getInstance().storage_saveObject("SYNC", "");
 					viewProgressView.setVisibility(View.GONE);
@@ -330,6 +346,7 @@ public class ProjectFragment extends BaseFragment {
 		syncViewModel.getServerConnectivity().observe(this, new Observer<Boolean>() {
 			@Override
 			public void onChanged(@Nullable Boolean aBoolean) {
+				Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment observe serverConnectivity");
 				if (Globals.getInstance().storage_loadString("SYNC").equals("")) {
 					syncViewModel.uploadDataToServer();
 				}else{
@@ -340,6 +357,7 @@ public class ProjectFragment extends BaseFragment {
 		syncViewModel.getJsonDeleteProject().observe(this, new Observer<Boolean>() {
 			@Override
 			public void onChanged(@Nullable Boolean aBoolean) {
+				Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment observe jsonDeleteProject");
 				if (aBoolean != null) {
 //					projectDisplayModelArrayList.remove(selectedDeletePosition);
 //					projectAdapter.setItems(projectDisplayModelArrayList);
@@ -413,6 +431,7 @@ public class ProjectFragment extends BaseFragment {
 
 	public void checkuploadData() {
 		Log.e("Project Fragment", "check uploaddataServer");
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment checkuploadData");
 		if (syncViewModel != null) {
 			syncViewModel.uploadDataToServer();
 //				syncViewModel.checkServerConnectivtiyTest(Globals.getInstance().storage_loadString("SERVER_IP"));
@@ -420,12 +439,15 @@ public class ProjectFragment extends BaseFragment {
 	}
 
 	public void gotoCategory(int position) {
+		Crashlytics.log(Log.DEBUG, "addFragment", "ProjectFragment gotoCategory");
 		ProjectDisplayModel projectDisplayModel = projectDisplayModelArrayList.get(position);
 		if (!projectDisplayModel.getProjectID().equals("")){
 			Globals.getInstance().storage_saveObject("ProjectID", projectDisplayModel.getProjectID());
+			Crashlytics.setString("ProjectID", projectDisplayModel.getProjectID());
 		}
 		if (!projectDisplayModel.getProjectName().equals("")){
 			Globals.getInstance().storage_saveObject("ProjectName", projectDisplayModel.getProjectName());
+			Crashlytics.setString("ProjectName", projectDisplayModel.getProjectName());
 		}
 		if (!projectDisplayModel.getPaceID().equals("")){
 			Globals.getInstance().storage_saveObject("PaceID", projectDisplayModel.getPaceID());
@@ -468,6 +490,8 @@ public class ProjectFragment extends BaseFragment {
 		Globals.getInstance().categoriesStack.clear();
 		Globals.getInstance().categoriesListNameArray.clear();
 		Globals.getInstance().categoriesListStringArray.clear();
+
+		Crashlytics.setString("UserName", Globals.getInstance().storage_loadString("UserName"));
 
 		addFragment(CategoryFragment.getInstance(), true);
 //		Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);

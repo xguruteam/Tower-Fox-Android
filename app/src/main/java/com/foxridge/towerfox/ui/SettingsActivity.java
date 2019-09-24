@@ -19,10 +19,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.crashlytics.android.Crashlytics;
 import com.foxridge.towerfox.App;
 import com.foxridge.towerfox.R;
 import com.foxridge.towerfox.service.response.BaseResponse;
@@ -533,6 +535,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     }
 
     public void gotoServerIpAddress() {
+        Crashlytics.log(Log.DEBUG, "buildProjectPhotoQuery", "SettingsActivity gotoServerIpAddress");
         Globals.getInstance().projectsGlobalArray.clear();
         Globals.getInstance().categoriesListNameArray.clear();
         Globals.getInstance().categoriesListStringArray.clear();

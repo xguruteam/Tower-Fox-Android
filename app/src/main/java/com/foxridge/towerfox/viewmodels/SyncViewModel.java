@@ -15,6 +15,7 @@ import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.foxridge.towerfox.App;
+import com.foxridge.towerfox.BuildConfig;
 import com.foxridge.towerfox.model.Categories;
 import com.foxridge.towerfox.model.CategoryDisplayModel;
 import com.foxridge.towerfox.model.CategoryHeaderModel;
@@ -179,7 +180,7 @@ public class SyncViewModel extends ViewModel {
             try {
                 PackageManager pm = context.getPackageManager();
                 PackageInfo pInfo = pm.getPackageInfo(context.getPackageName(), 0);
-                version = pInfo.versionName;
+                version = BuildConfig.VERSION_NAME;
                 deviceVersion = Build.VERSION.RELEASE;
                 model = Build.DEVICE;
             } catch (PackageManager.NameNotFoundException e) {
@@ -1285,7 +1286,7 @@ public class SyncViewModel extends ViewModel {
         try {
             PackageManager pm = context.getPackageManager();
             PackageInfo pInfo = pm.getPackageInfo(context.getPackageName(), 0);
-            version = pInfo.versionName;
+            version = BuildConfig.VERSION_NAME;
             deviceVersion = Build.VERSION.RELEASE;
             model = Build.DEVICE;
         } catch (PackageManager.NameNotFoundException e) {

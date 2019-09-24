@@ -8,6 +8,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.foxridge.towerfox.BuildConfig;
 import com.foxridge.towerfox.service.response.BaseResponse;
 import com.foxridge.towerfox.utils.Globals;
 import com.google.gson.Gson;
@@ -53,7 +54,7 @@ public class Sync {
             try {
                 PackageManager pm = context.getPackageManager();
                 PackageInfo pInfo = pm.getPackageInfo(context.getPackageName(), 0);
-                version = pInfo.versionName;
+                version = BuildConfig.VERSION_NAME;
                 deviceVersion = Build.VERSION.RELEASE;
                 model = Build.DEVICE;
             } catch (PackageManager.NameNotFoundException e) {

@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 
 import com.crashlytics.android.Crashlytics;
 import com.foxridge.towerfox.App;
+import com.foxridge.towerfox.BuildConfig;
 import com.foxridge.towerfox.R;
 import com.foxridge.towerfox.service.response.BaseResponse;
 import com.foxridge.towerfox.utils.Globals;
@@ -177,7 +178,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             Context context = getBaseContext();
             PackageManager pm = context.getPackageManager();
             PackageInfo pInfo = pm.getPackageInfo(context.getPackageName(), 0);
-            version = pInfo.versionName;
+            version = BuildConfig.VERSION_NAME;
             deviceVersion = Build.VERSION.RELEASE;
             model = Build.DEVICE;
             tvAboutData.setText(String.format("Tower Fox for Android\nVersion %s\n\nDevice Model: %s\nDevice Version: %s", version, model, deviceVersion));

@@ -177,22 +177,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void setItems(final List<CategoryDisplayModel> items) {
-        this.items.clear();
+        this.items = items;
         notifyDataSetChanged();
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Handler handler = new Handler(Looper.getMainLooper());
-                handler.post(new Runnable() {
-                    public void run() {
-                        CategoryAdapter.this.items = items;
-                        notifyDataSetChanged();
-                    }
-                });
-
-            }
-        }, 300);
     }
 
 

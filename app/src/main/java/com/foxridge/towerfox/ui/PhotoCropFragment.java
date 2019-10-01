@@ -57,6 +57,7 @@ import permissions.dispatcher.RuntimePermissions;
   private Bitmap.CompressFormat mCompressFormat = Bitmap.CompressFormat.JPEG;
   private RectF mFrameRect = null;
   public Uri mSourceUri = null;
+  public Uri mTargetUri = null;
   private Context mContext;
 
   // Note: only the system can call this constructor by reflection.
@@ -190,6 +191,7 @@ import permissions.dispatcher.RuntimePermissions;
   @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) public void cropImage() {
     Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment cropImage");
     showProgress();
+    mTargetUri = createSaveUri();
     mCropView.crop(mSourceUri).execute(mCropCallback);
   }
 
@@ -385,9 +387,18 @@ import permissions.dispatcher.RuntimePermissions;
     @Override
     public void onSuccess(Bitmap cropped) {
       Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment CropCallback onSuccess");
+      Uri uri = null;
+      if (mTargetUri == null) {
+        uri = createSaveUri();
+      } else {
+        uri = mTargetUri;
+      }
+
       mCropView.save(cropped)
           .compressFormat(mCompressFormat)
-          .execute(createSaveUri(), mSaveCallback);
+          .execute(uri, mSaveCallback);
+
+      mTargetUri = null;
     }
 
     @Override

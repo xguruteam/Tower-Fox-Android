@@ -698,8 +698,9 @@ public class SyncViewModel extends ViewModel {
     public ArrayList<HashMap<String, String>> buildProjectPhotoQuery(){
         Crashlytics.log(Log.DEBUG, "buildProjectPhotoQuery", "SyncViewModel buildProjectPhotoQuery");
         ArrayList<HashMap<String, String>> request = new ArrayList<>();
-        if (Globals.getInstance().projectsGlobalArray.size() > 0) {
-            for (String projectid : Globals.getInstance().projectsGlobalArray) {
+        ArrayList<String> projectsArray = new ArrayList<>(Globals.getInstance().projectsGlobalArray);
+        if (projectsArray.size() > 0) {
+            for (String projectid : projectsArray) {
                 HashMap<String, String> param = new HashMap<>();
                 param.put("CASPRID", projectid);
                 String date = "0";
@@ -1378,13 +1379,15 @@ public class SyncViewModel extends ViewModel {
     }
 
     public void getCategoryHeaderCount() {
+        int count = Globals.getInstance().navigationStack.size();
+        NavigationStack stack = Globals.getInstance().navigationStack.get(count - 1);
+        final String sectorID = stack.getSectorID();
+        final String positionID = stack.getPositionID();
+        final String parentID = stack.getParentID();
+        final String projectID = stack.getProjectID();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String sectorID = Globals.getInstance().navigationStack.get(Globals.getInstance().navigationStack.size() - 1).getSectorID();
-                String positionID = Globals.getInstance().navigationStack.get(Globals.getInstance().navigationStack.size() - 1).getPositionID();
-                String parentID = Globals.getInstance().navigationStack.get(Globals.getInstance().navigationStack.size() - 1).getParentID();
-                String projectID = Globals.getInstance().navigationStack.get(Globals.getInstance().navigationStack.size() - 1).getProjectID();
                 if (sectorID.equals("0") || sectorID.equals("99999")) {
                     categoryDisplayHeaderModels.postValue(App.getApp().getProjectsRepository().getCategoryHeader1(projectID, parentID));
                 }else if ((!sectorID.equals("0") || sectorID.equals("99999")) && (positionID.equals("0") || positionID.equals("99999"))) {

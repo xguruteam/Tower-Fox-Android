@@ -1379,8 +1379,9 @@ public class SyncViewModel extends ViewModel {
     }
 
     public void getCategoryHeaderCount() {
-        int count = Globals.getInstance().navigationStack.size();
-        NavigationStack stack = Globals.getInstance().navigationStack.get(count - 1);
+        ArrayList<NavigationStack> navigationStacks = new ArrayList<>(Globals.getInstance().navigationStack);
+        int count = navigationStacks.size();
+        NavigationStack stack = navigationStacks.get(count - 1);
         final String sectorID = stack.getSectorID();
         final String positionID = stack.getPositionID();
         final String parentID = stack.getParentID();

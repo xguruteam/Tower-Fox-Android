@@ -189,9 +189,11 @@ import permissions.dispatcher.RuntimePermissions;
   }
 
   @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) public void cropImage() {
-    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment cropImage");
     showProgress();
     mTargetUri = createSaveUri();
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment cropImage");
+    if (mTargetUri == null) return;
+    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment createSaveUri:" + mTargetUri.toString());
     mCropView.crop(mSourceUri).execute(mCropCallback);
   }
 
@@ -223,7 +225,6 @@ import permissions.dispatcher.RuntimePermissions;
 
   public Uri createSaveUri() {
     Uri uri = createNewUri(mContext, mCompressFormat);
-    Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment createSaveUri:" + uri.toString());
     return uri;
   }
 

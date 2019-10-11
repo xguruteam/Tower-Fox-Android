@@ -322,6 +322,8 @@ public class CategoryFragment extends BaseFragment {
 	}
 
 	public void itemClicked(CategoryDisplayModel model) {
+		if (model == null) return;
+
 		if (model.getIItemID() != null) {
 			if (!model.getIItemID().equals("") && !model.getIItemID().equals("undefined")) {
 				Globals.getInstance().storage_saveObject("ItemID", model.getIItemID());

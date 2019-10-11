@@ -165,7 +165,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public CategoryDisplayModel getItem(int position) {
-        return items.get(position);
+        if (position < items.size())
+            return items.get(position);
+        else
+            return null;
     }
 
     @Override

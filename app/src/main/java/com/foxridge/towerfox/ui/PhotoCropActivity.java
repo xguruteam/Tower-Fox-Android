@@ -64,6 +64,12 @@ public class PhotoCropActivity extends AppCompatActivity implements View.OnClick
         initToolbar();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("PhotoCropActivity", "onDestroy");
+    }
+
     @Override public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }

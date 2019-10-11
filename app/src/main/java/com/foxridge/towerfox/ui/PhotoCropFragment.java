@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.crashlytics.android.Crashlytics;
 import com.foxridge.towerfox.App;
@@ -224,7 +225,9 @@ import permissions.dispatcher.RuntimePermissions;
   }
 
   public Uri createSaveUri() {
-    Uri uri = createNewUri(mContext, mCompressFormat);
+    Context context = App.getApp().getApplicationContext();
+    Crashlytics.log(Log.DEBUG, "PhotoCropFragment.createSaveUri", "context=" + (context == null ? "null" : "non-null"));
+    Uri uri = createNewUri(context, mCompressFormat);
     return uri;
   }
 
@@ -325,6 +328,9 @@ import permissions.dispatcher.RuntimePermissions;
     public void onClick(View v) {
       switch (v.getId()) {
         case R.id.buttonDone:
+          v.setEnabled(false);
+          Log.e(TAG, "crop done button clicked");
+          Crashlytics.log(Log.DEBUG, "CropImageView.saveAsync", "PhotoCropFragment done button handler");
           PhotoCropFragmentPermissionsDispatcher.cropImageWithCheck(PhotoCropFragment.this);
           break;
         case R.id.buttonFitImage:

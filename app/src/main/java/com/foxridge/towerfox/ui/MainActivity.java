@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -310,7 +311,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-
+        FragmentManager manager = getSupportFragmentManager();
+        List<Fragment> fragments = manager.getFragments();
+        Fragment fragment = fragments.get(fragments.size() - 1);
+        if (fragment instanceof CategoryFragment) {
+            Log.e("MainActivity", "fragment back");
+            ((CategoryFragment)fragment).onBack();
+        }
     }
 
     public void chekPermissions() {

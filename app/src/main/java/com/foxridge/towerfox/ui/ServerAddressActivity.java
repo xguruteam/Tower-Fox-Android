@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -114,7 +115,7 @@ public class ServerAddressActivity extends BaseActivity implements View.OnClickL
             Helper.showErrorDialog(this, "Server IP cannot be empty.");
             return;
         }
-        if (edtServerAddress.getText().toString().contains(" ")) {
+        if (!Patterns.WEB_URL.matcher(edtServerAddress.getText().toString()).matches()) {
             Helper.showErrorDialog(this, "Current Server IP is invalid.");
             return;
         }

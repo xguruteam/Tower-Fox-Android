@@ -190,20 +190,7 @@ public class CategoryFragment extends BaseFragment {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.btn_left:
-				if (Globals.getInstance().navigationStack.size() > 0) {
-					Globals.getInstance().navigationStack.remove(Globals.getInstance().navigationStack.size() - 1);
-					if (Globals.getInstance().categoriesStack.size() > 0) {
-						Globals.getInstance().categoriesStack.remove(Globals.getInstance().categoriesStack.size() - 1);
-					}
-					if (Globals.getInstance().navigationStack.size() > 0) {
-						EventBus.getDefault().post(new EventPush("refresh", "category"));
-					}else{
-						EventBus.getDefault().post(new EventPush("upload", "project"));
-					}
-				}else{
-					RestService.logOnServer("CategoryFragment, onClick - btn_let, Invalid Navigation Stack.");
-				}
-				mAct.backFragment(false);
+				onBack();
 				break;
 			case R.id.btn_top:
 				Globals.getInstance().categoriesStack.clear();
@@ -219,6 +206,23 @@ public class CategoryFragment extends BaseFragment {
 				mAct.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
 				break;
 		}
+	}
+
+	public void onBack() {
+		if (Globals.getInstance().navigationStack.size() > 0) {
+			Globals.getInstance().navigationStack.remove(Globals.getInstance().navigationStack.size() - 1);
+			if (Globals.getInstance().categoriesStack.size() > 0) {
+				Globals.getInstance().categoriesStack.remove(Globals.getInstance().categoriesStack.size() - 1);
+			}
+			if (Globals.getInstance().navigationStack.size() > 0) {
+				EventBus.getDefault().post(new EventPush("refresh", "category"));
+			}else{
+				EventBus.getDefault().post(new EventPush("upload", "project"));
+			}
+		}else{
+			RestService.logOnServer("CategoryFragment, onClick - btn_let, Invalid Navigation Stack.");
+		}
+		mAct.backFragment(false);
 	}
 
 	public void setObservers() {

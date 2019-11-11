@@ -20,6 +20,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -374,7 +375,11 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             Helper.showErrorDialog(this, "Please Enter Different IP Address");
             return;
         }
-        if (edtServerIp.getText().toString().contains(" ")) {
+        if (edtServerIp.getText().toString().isEmpty()) {
+            Helper.showErrorDialog(this, "Server IP cannot be empty.");
+            return;
+        }
+        if (!Patterns.WEB_URL.matcher(edtServerIp.getText().toString()).matches()) {
             Helper.showErrorDialog(this, "Please Enter Valid IP Address");
             return;
         }

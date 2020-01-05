@@ -4,6 +4,7 @@ public class RejectDisplayModel {
     private String Sample = "";
     private String CategoryName = "";
     private String ProjectPhotoID = "";
+    private String ProjectName = "";
     private String ProjectID = "";
     private String CategoryID = "";
     private String ItemID = "";
@@ -53,9 +54,13 @@ public class RejectDisplayModel {
         return ProjectID;
     }
 
+    public String getProjectName() { return ProjectName; }
+
     public void setProjectID(String projectID) {
         ProjectID = projectID;
     }
+
+    public void setProjectName(String projectName) { ProjectName = projectName; }
 
     public String getCategoryID() {
         return CategoryID;

@@ -158,6 +158,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Globals.getInstance().storage_saveObject("AdhocPhotoID", rejectedAdapter.getItem(position).getAdhocPhotoID());
                 Globals.getInstance().storage_saveObject("ParentID", rejectedAdapter.getItem(position).getCategoryID());
                 Globals.getInstance().storage_saveObject("ProjectID", rejectedAdapter.getItem(position).getProjectID());
+                Globals.getInstance().storage_saveObject("AlbumName", rejectedAdapter.getItem(position).getProjectName());
                 Globals.getInstance().storage_saveObject("SectorID", rejectedAdapter.getItem(position).getSectorID());
                 Globals.getInstance().storage_saveObject("PositionID", rejectedAdapter.getItem(position).getPositionID());
                 Globals.getInstance().storage_saveObject("isRList", true);

@@ -1235,23 +1235,23 @@ public class SyncViewModel extends ViewModel {
                     fos.close();
 
                     // copy to gallery
-                    dirstr = tempGalleryPath(imagepath);
-                    dir = new File(dirstr);
-                    if (!dir.exists()) {
-                        if (!dir.mkdirs()) {
-                            return imageURL;
-                        }
-                    }
-                    File noNameFile = new File(dir, ".nomedia");
-                    if (noNameFile.exists()) {
-                        return imageURL;
-                    }
-
-                    file = new File(dir, imagepath);
-                    file.createNewFile();
-                    fos = new FileOutputStream(file);
-                    fos.write(response);
-                    fos.close();
+//                    dirstr = tempGalleryPath(imagepath);
+//                    dir = new File(dirstr);
+//                    if (!dir.exists()) {
+//                        if (!dir.mkdirs()) {
+//                            return imageURL;
+//                        }
+//                    }
+//                    File noNameFile = new File(dir, ".nomedia");
+//                    if (noNameFile.exists()) {
+//                        return imageURL;
+//                    }
+//
+//                    file = new File(dir, imagepath);
+//                    file.createNewFile();
+//                    fos = new FileOutputStream(file);
+//                    fos.write(response);
+//                    fos.close();
 
                     return imageURL;
                 }

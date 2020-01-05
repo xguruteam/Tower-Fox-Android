@@ -154,6 +154,10 @@ public class TakeNewPhotoActivity extends BaseActivity implements View.OnClickLi
             });
             builder.show();
         } else {
+            String album = Globals.getInstance().storage_loadString("ProjectName");
+            if (album.length() > 0) {
+                Globals.getInstance().storage_saveObject("AlbumName", album);
+            }
             EasyImage.openChooserWithGallery(this, null, 0);
         }
     }
@@ -217,6 +221,10 @@ public class TakeNewPhotoActivity extends BaseActivity implements View.OnClickLi
         switch (requestCode) {
             case REQUEST_CAMERA_PERMISSION: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    String album = Globals.getInstance().storage_loadString("ProjectName");
+                    if (album.length() > 0) {
+                        Globals.getInstance().storage_saveObject("AlbumName", album);
+                    }
                     EasyImage.openChooserWithGallery(this, null, 0);
                 } else {
                     Toast.makeText(this, R.string.access_denied, Toast.LENGTH_SHORT).show();

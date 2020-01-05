@@ -365,6 +365,8 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
 
         imageNameStr = String.format("%s_%s_%s_%s_%s_%s.jpg", Globals.getInstance().storage_loadString("ProjectID"), Globals.getInstance().storage_loadString("ParentID"), Globals.getInstance().storage_loadString("ItemID"),
                 Globals.getInstance().storage_loadString("SectorID"), Globals.getInstance().storage_loadString("PositionID"), dateConversion());
+
+        Log.e("Album Name", Globals.getInstance().storage_loadString("AlbumName"));
         saveImage();
     }
 
@@ -400,7 +402,13 @@ public class PhotosDetailActivity extends BaseActivity implements View.OnClickLi
         if (appName.length() < 1) {
             Crashlytics.getInstance().crash();
         }
-        String filePath = storageDir.getAbsolutePath() + "/" + appName + "/Backup/" + imageNameStr;
+        String album = Globals.getInstance().storage_loadString("AlbumName");
+        String filePath = "";
+        if (album.length() > 0) {
+            filePath = storageDir.getAbsolutePath() + "/" + appName + "/" + album + "/" + imageNameStr;
+        } else {
+            filePath = storageDir.getAbsolutePath() + "/" + appName + "/" + imageNameStr;
+        }
         return filePath;
     }
 
